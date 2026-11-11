@@ -12,6 +12,8 @@ import { mockAgents } from "./mock/agents";
 import { initialApplications } from "./mock/applications";
 import { initialCareerProfile } from "./mock/profile";
 import { initialAISettings } from "./mock/aiSettings";
+import { applicationService } from "./services/applicationService";
+import { profileService } from "./services/profileService";
 
 // Marketing
 import { LandingPage } from "./components/marketing/LandingPage";
@@ -83,6 +85,16 @@ export default function App() {
     window.addEventListener("hashchange", parseHash);
     return () => window.removeEventListener("hashchange", parseHash);
   }, [parseHash]);
+
+  // Load persistent application and profile state
+  useEffect(() => {
+    applicationService.getApplications().then((loaded) => {
+      if (loaded && loaded.length > 0) setApplications(loaded);
+    });
+    profileService.getProfile().then((loaded) => {
+      if (loaded) setProfile(loaded);
+    });
+  }, []);
 
   // Navigate function that updates URL hash & state
   const navigate = (page: AppPage, param?: string) => {
