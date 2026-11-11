@@ -15,6 +15,8 @@ import { initialAISettings } from "./mock/aiSettings";
 
 // Marketing
 import { LandingPage } from "./components/marketing/LandingPage";
+import { CustomCursor } from "./components/common/CustomCursor";
+import { SmoothScrollProvider } from "./components/common/SmoothScrollProvider";
 
 // Authenticated App Shell & Screens
 import { AppLayout } from "./components/app/AppLayout";
@@ -201,76 +203,78 @@ export default function App() {
   // Current selected job object
   const currentJob = mockJobs.find((j) => j.id === selectedJobId) || mockJobs[0];
 
-  // If on public marketing landing page
-  if (currentPage === "landing") {
-    return <LandingPage onEnterApp={() => navigate("dashboard")} />;
-  }
-
-  // Otherwise, inside authenticated application workspace
+  // Main render wrapped with SmoothScroll & CustomCursor
   return (
-    <AppLayout
-      currentPage={currentPage}
-      onNavigate={navigate}
-      onExitToLanding={() => navigate("landing")}
-    >
-      {currentPage === "dashboard" && (
-        <DashboardPage onNavigate={navigate} onSelectJob={(j) => navigate("job-detail", j.id)} />
-      )}
-
-      {currentPage === "jobs" && (
-        <JobDiscoveryPage
+    <SmoothScrollProvider>
+      <CustomCursor />
+      {currentPage === "landing" ? (
+        <LandingPage onEnterApp={() => navigate("dashboard")} />
+      ) : (
+        <AppLayout
+          currentPage={currentPage}
           onNavigate={navigate}
-          onSelectJob={(j) => navigate("job-detail", j.id)}
-          savedJobIds={savedJobIds}
-          onToggleSaveJob={handleToggleSaveJob}
-        />
-      )}
+          onExitToLanding={() => navigate("landing")}
+        >
+          {currentPage === "dashboard" && (
+            <DashboardPage onNavigate={navigate} onSelectJob={(j) => navigate("job-detail", j.id)} />
+          )}
 
-      {currentPage === "job-detail" && (
-        <JobDetailPage
-          job={currentJob}
-          onNavigate={navigate}
-          isSaved={savedJobIds.includes(currentJob.id)}
-          onToggleSave={handleToggleSaveJob}
-          onApply={handleApplyJob}
-        />
-      )}
+          {currentPage === "jobs" && (
+            <JobDiscoveryPage
+              onNavigate={navigate}
+              onSelectJob={(j) => navigate("job-detail", j.id)}
+              savedJobIds={savedJobIds}
+              onToggleSaveJob={handleToggleSaveJob}
+            />
+          )}
 
-      {currentPage === "applications" && (
-        <ApplicationTrackerPage
-          applications={applications}
-          onUpdateStatus={handleUpdateAppStatus}
-          onUpdateNotes={handleUpdateAppNotes}
-          onAddApplication={handleAddCustomApp}
-          onNavigate={navigate}
-        />
-      )}
+          {currentPage === "job-detail" && (
+            <JobDetailPage
+              job={currentJob}
+              onNavigate={navigate}
+              isSaved={savedJobIds.includes(currentJob.id)}
+              onToggleSave={handleToggleSaveJob}
+              onApply={handleApplyJob}
+            />
+          )}
 
-      {currentPage === "career-profile" && (
-        <CareerProfilePage
-          profile={profile}
-          onUpdateProfile={handleUpdateProfile}
-          onNavigate={navigate}
-        />
-      )}
+          {currentPage === "applications" && (
+            <ApplicationTrackerPage
+              applications={applications}
+              onUpdateStatus={handleUpdateAppStatus}
+              onUpdateNotes={handleUpdateAppNotes}
+              onAddApplication={handleAddCustomApp}
+              onNavigate={navigate}
+            />
+          )}
 
-      {currentPage === "agents" && (
-        <AgentCenterPage onNavigate={navigate} initialAgentId={selectedAgentId} />
-      )}
+          {currentPage === "career-profile" && (
+            <CareerProfilePage
+              profile={profile}
+              onUpdateProfile={handleUpdateProfile}
+              onNavigate={navigate}
+            />
+          )}
 
-      {currentPage === "agent-detail" && (
-        <AgentDetailPage agentId={selectedAgentId} onNavigate={navigate} />
-      )}
+          {currentPage === "agents" && (
+            <AgentCenterPage onNavigate={navigate} initialAgentId={selectedAgentId} />
+          )}
 
-      {currentPage === "ai-settings" && (
-        <AISettingsPage
-          settings={aiSettings}
-          onUpdateSettings={handleUpdateAISettings}
-          onNavigate={navigate}
-        />
-      )}
+          {currentPage === "agent-detail" && (
+            <AgentDetailPage agentId={selectedAgentId} onNavigate={navigate} />
+          )}
 
-      {currentPage === "settings" && <GeneralSettingsPage onNavigate={navigate} />}
-    </AppLayout>
+          {currentPage === "ai-settings" && (
+            <AISettingsPage
+              settings={aiSettings}
+              onUpdateSettings={handleUpdateAISettings}
+              onNavigate={navigate}
+            />
+          )}
+
+          {currentPage === "settings" && <GeneralSettingsPage onNavigate={navigate} />}
+        </AppLayout>
+      )}
+    </SmoothScrollProvider>
   );
 }
