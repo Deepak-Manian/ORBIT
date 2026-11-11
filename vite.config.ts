@@ -4,7 +4,19 @@ import tailwindcss from "@tailwindcss/vite";
 import fs from "node:fs";
 import path from "node:path";
 
-import siteConfiguration from "./.figma/make/site.json" with { type: "json" };
+let siteConfiguration: FigmaSiteConfiguration = {
+  title: "ORBIT — Career Intelligence Platform",
+  description: "Agentic career intelligence platform coordinating 8 specialized AI partners.",
+};
+
+try {
+  const siteConfigPath = path.resolve(import.meta.dirname, "./.figma/make/site.json");
+  if (fs.existsSync(siteConfigPath)) {
+    siteConfiguration = JSON.parse(fs.readFileSync(siteConfigPath, "utf-8"));
+  }
+} catch {
+  // Fallback to default
+}
 
 // Vite config — https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
