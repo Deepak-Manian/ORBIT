@@ -2,12 +2,10 @@ import { MarketingNav } from "./MarketingNav";
 import { HeroSection } from "./HeroSection";
 import { Marquee } from "../common/Marquee";
 import { PhilosophySection } from "./PhilosophySection";
-import { CapabilitiesSection } from "./CapabilitiesSection";
-import { CareerIntelligenceSection } from "./CareerIntelligenceSection";
 import { MeetAgentsSection } from "./MeetAgentsSection";
+import { CapabilitiesSection } from "./CapabilitiesSection";
 import { BYOASection } from "./BYOASection";
-import { HowItWorksSection } from "./HowItWorksSection";
-import { OpenSourceSection } from "./OpenSourceSection";
+import { MoreStuffSection } from "./MoreStuffSection";
 import { MarketingFooter } from "./MarketingFooter";
 
 interface LandingPageProps {
@@ -22,9 +20,11 @@ export function LandingPage({ onEnterApp }: LandingPageProps) {
 
   return (
     <div className="landing-root min-h-screen bg-[var(--cream)] text-[var(--black)] font-body selection:bg-[var(--lavender)] selection:text-[var(--black)]">
+      {/* Fixed Editorial Navigation */}
       <MarketingNav onEnterApp={onEnterApp} onNavigateSection={scrollTo} />
+
       <main>
-        {/* Section 1: Hero */}
+        {/* Section 1: Hero ("hello we are orbit" + full-bleed showcase banner) */}
         <HeroSection onExplore={onEnterApp} onMeetAgents={() => scrollTo("agents")} />
 
         {/* Playful Infinite Editorial Marquee */}
@@ -43,26 +43,20 @@ export function LandingPage({ onEnterApp }: LandingPageProps) {
           textColor="text-[var(--black)]"
         />
 
-        {/* Section 2: Our philosophy */}
+        {/* Section 2: Philosophy ("we wanna be where they are" + stacked cards) */}
         <PhilosophySection />
 
-        {/* Section 3: Platform capabilities */}
-        <CapabilitiesSection />
-
-        {/* Section 4: Career intelligence */}
-        <CareerIntelligenceSection />
-
-        {/* Section 5: Meet the agents */}
+        {/* Section 3: Meet the Agents ("we are a future-proof collective... not to brag!") */}
         <MeetAgentsSection />
 
-        {/* Section 6: Your AI, your choice */}
+        {/* Section 4: Capabilities ("call us if you need:" + 5 vertical fan-out cards + client logos) */}
+        <CapabilitiesSection />
+
+        {/* Section 5: BYOA Architecture (Privacy & Own Keys) */}
         <BYOASection />
 
-        {/* Section 7: How it works */}
-        <HowItWorksSection />
-
-        {/* Section 8: Open source and community */}
-        <OpenSourceSection />
+        {/* Section 6: More Stuff To Click On (Tilted Cards with custom cursor text) */}
+        <MoreStuffSection />
 
         {/* Secondary Editorial Marquee */}
         <Marquee
@@ -78,13 +72,13 @@ export function LandingPage({ onEnterApp }: LandingPageProps) {
           ]}
           direction="right"
           speed="slow"
-          bgColor="bg-[var(--orange)]"
+          bgColor="bg-[var(--blue)]"
           textColor="text-white"
         />
       </main>
-      {/* Section 9: Footer */}
+
+      {/* Section 7: Vivid Editorial Footer with Giant Script Logo & Stickers */}
       <MarketingFooter onEnterApp={onEnterApp} />
     </div>
   );
 }
-

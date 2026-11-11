@@ -20,77 +20,104 @@ export function MarketingNav({ onEnterApp }: MarketingNavProps) {
   };
 
   return (
-    <header className="site-nav fixed top-0 left-0 w-full h-20 md:h-24 z-50 flex items-center justify-between px-6 md:px-12 backdrop-blur-md bg-[var(--black)]/85 border-b border-white/10 text-white transition-all">
-      <Logo light size="md" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
-
-      <nav
-        className={`fixed md:static inset-0 top-20 md:top-auto bg-[var(--black)]/95 md:bg-transparent flex flex-col md:flex-row items-center justify-center md:justify-end gap-8 md:gap-8 p-8 md:p-0 transition-all duration-300 ${
-          mobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto"
-        }`}
-      >
+    <header className="fixed top-0 left-0 w-full h-20 md:h-24 z-50 flex items-center justify-between px-6 md:px-12 backdrop-blur-md bg-[var(--black)]/80 border-b border-white/10 text-white transition-all">
+      {/* Left Links */}
+      <div className="flex items-center gap-6">
         <button
-          onClick={() => scrollTo("philosophy")}
-          className="text-white/80 hover:text-white font-body text-base md:text-sm tracking-wide transition-colors cursor-pointer"
+          onClick={() => scrollTo("showcase")}
+          className="text-white/85 hover:text-white font-display font-bold text-sm tracking-wide transition-colors cursor-pointer"
         >
-          Philosophy
-        </button>
-        <button
-          onClick={() => scrollTo("platform")}
-          className="text-white/80 hover:text-white font-body text-base md:text-sm tracking-wide transition-colors cursor-pointer"
-        >
-          Platform
-        </button>
-        <button
-          onClick={() => scrollTo("intelligence")}
-          className="text-white/80 hover:text-white font-body text-base md:text-sm tracking-wide transition-colors cursor-pointer"
-        >
-          Intelligence
+          work
         </button>
         <button
           onClick={() => scrollTo("agents")}
-          className="text-white/80 hover:text-white font-body text-base md:text-sm tracking-wide transition-colors cursor-pointer"
+          className="hidden sm:inline-block text-white/70 hover:text-white font-body text-sm tracking-wide transition-colors cursor-pointer"
         >
-          AI Agents
+          agents
         </button>
         <button
-          onClick={() => scrollTo("byoa")}
-          className="text-white/80 hover:text-white font-body text-base md:text-sm tracking-wide transition-colors cursor-pointer"
+          onClick={() => scrollTo("capabilities")}
+          className="hidden md:inline-block text-white/70 hover:text-white font-body text-sm tracking-wide transition-colors cursor-pointer"
         >
-          BYOA
+          capabilities
         </button>
-        <button
-          onClick={() => scrollTo("open")}
-          className="text-white/80 hover:text-white font-body text-base md:text-sm tracking-wide transition-colors cursor-pointer"
-        >
-          Open Source
-        </button>
+      </div>
 
-        <div className="pt-4 md:pt-0 border-t md:border-t-0 border-white/10 w-full md:w-auto flex justify-center">
-          <Button
-            variant="primary"
-            size="md"
-            icon="arrow"
-            onClick={() => {
-              setMobileMenuOpen(false);
-              onEnterApp();
-            }}
+      {/* Center Script Logo */}
+      <div className="absolute left-1/2 -translate-x-1/2">
+        <Logo
+          variant="script"
+          light
+          size="md"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        />
+      </div>
+
+      {/* Right Action */}
+      <div className="flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-mono text-[var(--lime)]">
+          <span className="w-2 h-2 rounded-full bg-[var(--lime)] animate-pulse" />
+          <span>8 agents ready</span>
+        </div>
+
+        <Button
+          variant="primary"
+          size="sm"
+          icon="arrow"
+          onClick={onEnterApp}
+          className="shadow-[3px_3px_0px_white]"
+        >
+          enter workspace
+        </Button>
+
+        <button
+          type="button"
+          className="md:hidden p-2 text-white/90 hover:text-white focus:outline-none"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle navigation"
+        >
+          <Icon name={mobileMenuOpen ? "close" : "menu"} size={24} />
+        </button>
+      </div>
+
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 top-20 bg-[var(--black)]/95 flex flex-col items-center justify-center gap-6 p-8 z-50">
+          <button
+            onClick={() => scrollTo("showcase")}
+            className="text-white text-xl font-display font-bold"
           >
-            Enter Workspace
+            work
+          </button>
+          <button
+            onClick={() => scrollTo("philosophy")}
+            className="text-white/80 text-lg font-body"
+          >
+            philosophy
+          </button>
+          <button
+            onClick={() => scrollTo("capabilities")}
+            className="text-white/80 text-lg font-body"
+          >
+            capabilities
+          </button>
+          <button
+            onClick={() => scrollTo("agents")}
+            className="text-white/80 text-lg font-body"
+          >
+            agents
+          </button>
+          <button
+            onClick={() => scrollTo("byoa")}
+            className="text-white/80 text-lg font-body"
+          >
+            byoa
+          </button>
+          <Button variant="primary" size="lg" icon="arrow" onClick={onEnterApp}>
+            enter workspace
           </Button>
         </div>
-      </nav>
-
-      <button
-        type="button"
-        className="md:hidden p-2 text-white/90 hover:text-white focus:outline-none"
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        aria-label="Toggle navigation"
-      >
-        <Icon name={mobileMenuOpen ? "close" : "menu"} size={26} />
-      </button>
+      )}
     </header>
   );
 }
-

@@ -1,332 +1,220 @@
 import { useState } from "react";
-import { Icon } from "../common/Icon";
-import { Logo } from "../common/Logo";
-import { mockJobs } from "../../mock/jobs";
 
 export function CapabilitiesSection() {
-  const [activeTab, setActiveTab] = useState(0);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  const capabilities = [
+  const cards = [
     {
-      id: "discover",
-      num: "01",
-      label: "Discover",
-      title: "Roles with genuine signal, not bulk spam.",
-      desc: "Scout checks verified career portals, removes duplicate agency reposts, flags ghost listings, and prioritizes roles matching your exact trajectory.",
+      title: "scout",
+      subtitle: "job discovery",
+      color: "bg-[#175C4A]",
+      textColor: "text-white",
+      borderColor: "border-[#0d362b]",
+      sticker: "/stickers/100.svg",
+      bullets: [
+        "portal & board scraping",
+        "ghost listing filtration",
+        "salary transparency filter",
+        "direct hiring-team signals",
+        "daily curated briefings",
+      ],
     },
     {
-      id: "strengths",
-      num: "02",
-      label: "Strengths",
-      title: "Ground your value in verified evidence.",
-      desc: "Lens extracts accomplishments from your past projects, GitHub commits, and design systems work—generating explainable match scores.",
+      title: "lens",
+      subtitle: "skill intelligence",
+      color: "bg-[#718CFF]",
+      textColor: "text-[var(--black)]",
+      borderColor: "border-[#4062e0]",
+      sticker: "/stickers/good-vibes.svg",
+      bullets: [
+        "deep resume extraction",
+        "github & case-study sync",
+        "verifiable match scores",
+        "targeted skill gap audits",
+        "salary unlock benchmarks",
+      ],
     },
     {
-      id: "gaps",
-      num: "03",
-      label: "Skill gaps",
-      title: "Know what's missing before you apply.",
-      desc: "See the precise 1–2 competencies that separate you from candidate shortlist status, paired with actionable learning sprints.",
+      title: "draft",
+      subtitle: "tailored outreach",
+      color: "bg-[#FF633D]",
+      textColor: "text-white",
+      borderColor: "border-[#d8401b]",
+      sticker: "/stickers/lets-go.svg",
+      bullets: [
+        "human-toned cover notes",
+        "referral intro requests",
+        "case study pitch snippets",
+        "zero robot buzzwords",
+        "one-click edit & copy",
+      ],
     },
     {
-      id: "tracker",
-      num: "04",
-      label: "Applications",
-      title: "One living pipeline from saved to offer.",
-      desc: "Track status across 5 clean phases, log interactions, and receive calculated follow-up reminders before recruiter momentum cools down.",
+      title: "coach",
+      subtitle: "interview mastery",
+      color: "bg-[#E63946]",
+      textColor: "text-white",
+      borderColor: "border-[#b8222e]",
+      sticker: "/stickers/fistbump.svg",
+      bullets: [
+        "company-specific rubrics",
+        "star framework simulation",
+        "real-time craft critiques",
+        "salary negotiation scripts",
+        "stress question practice",
+      ],
     },
     {
-      id: "interviews",
-      num: "05",
-      label: "Interviews",
-      title: "Simulate tough conversations with Coach.",
-      desc: "Practice role-specific behavioral questions aligned to company leadership rubrics, with real-time critiques on structure and clarity.",
+      title: "track",
+      subtitle: "application autopilot",
+      color: "bg-[#DDA7F5]",
+      textColor: "text-[var(--black)]",
+      borderColor: "border-[#b876d6]",
+      sticker: "/stickers/cute.svg",
+      bullets: [
+        "5-phase visual pipeline",
+        "calendar sync & alarms",
+        "recruiter momentum radar",
+        "offer comparison matrix",
+        "private offline archive",
+      ],
     },
-    {
-      id: "market",
-      num: "06",
-      label: "Market",
-      title: "Macro hiring velocity & compensation truth.",
-      desc: "Signal delivers unvarnished India and global salary distributions, emerging skill premiums, and company headcount trajectories.",
-    },
+  ];
+
+  const clientLogos = [
+    { name: "Netflix", src: "/clients/netflix_logo.svg" },
+    { name: "Hema", src: "/clients/hema_logo.svg" },
+    { name: "KFC", src: "/clients/KFC_Logo.svg" },
+    { name: "Swapfiets", src: "/clients/swapfiets_logo.svg" },
+    { name: "Bol", src: "/clients/bol_logo.svg" },
+    { name: "Oxxio", src: "/clients/oxxio_logo.svg" },
+    { name: "DE", src: "/clients/DE_logo.svg" },
+    { name: "Jumbo", src: "/clients/Jumbo_logo.svg" },
+    { name: "ANWB", src: "/clients/anwb_logo.svg" },
   ];
 
   return (
     <section
-      id="platform"
-      className="relative py-28 px-6 md:px-12 bg-[var(--black)] text-white overflow-hidden"
+      id="capabilities"
+      className="relative py-28 px-6 md:px-12 bg-[var(--cream)] text-[var(--black)] overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Section Tag */}
-        <div className="flex items-center gap-2 mb-6">
-          <span className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-mono font-bold uppercase tracking-wider text-[var(--lime)]">
-            03 / one connected platform
-          </span>
-        </div>
-
-        {/* Section Heading Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
-          <div className="lg:col-span-7">
-            <h2 className="font-display font-black text-3xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight text-white">
-              one place for every
-              <br />
-              <span className="font-serif italic font-normal text-[var(--orange)]">
-                career move.
-              </span>
-            </h2>
+        <div className="flex items-center justify-between mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--black)]/5 border border-[var(--black)]/10 text-xs font-mono font-bold uppercase tracking-wider text-[var(--muted)]">
+            <span>03</span> / capabilities
           </div>
-          <div className="lg:col-span-5">
-            <p className="font-body text-base md:text-lg text-white/70 leading-relaxed">
-              Not another disjointed icon grid. A living workspace where your profile,
-              opportunities, applications, and specialized agents make each other smarter every
-              single day.
-            </p>
+          <div className="text-xs font-mono text-[var(--muted)]">
+            5 MODULES · 100% PRIVATE
           </div>
         </div>
 
-        {/* Interactive Capability Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
-          {capabilities.map((cap, i) => (
-            <button
-              key={cap.id}
-              onClick={() => setActiveTab(i)}
-              className={`px-4 py-2.5 rounded-full font-body text-xs md:text-sm font-bold tracking-tight whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center gap-2 ${
-                activeTab === i
-                  ? "bg-[var(--orange)] text-[var(--black)] shadow-[2px_2px_0px_white]"
-                  : "bg-white/10 text-white/70 hover:text-white hover:bg-white/15"
-              }`}
-            >
-              <span className="font-mono text-[10px] opacity-75">{cap.num}</span>
-              <span>{cap.label}</span>
-            </button>
-          ))}
+        {/* ---------------- Headline matching Screenshot 3: "call us if you need:" ---------------- */}
+        <div className="mb-16">
+          <h2 className="font-display font-black text-4xl sm:text-6xl md:text-7xl leading-[1.04] tracking-tight text-[var(--black)]">
+            call us if you{" "}
+            <span className="font-serif italic font-normal text-[var(--orange)]">
+              need:
+            </span>
+          </h2>
         </div>
 
-        {/* Layered Interactive Mockup Container */}
-        <div className="relative rounded-2xl bg-[#121214] border-2 border-white/15 overflow-hidden shadow-[0_30px_70px_-20px_rgba(0,0,0,0.9)]">
-          {/* Top Window Bar */}
-          <div className="flex items-center justify-between px-5 py-3.5 bg-black/40 border-b border-white/10">
-            <div className="flex items-center gap-3">
-              <Logo light size="sm" />
-              <span className="text-white/30 text-xs hidden sm:inline">/</span>
-              <span className="text-white/70 text-xs font-mono hidden sm:inline">
-                orbit.app/workspace/{capabilities[activeTab].id}
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-              <span className="text-xs font-mono text-white/70">8 AGENTS ACTIVE</span>
-            </div>
-          </div>
+        {/* ---------------- 5 Vertical Accordion Fan-out Cards (Screenshot 3) ---------------- */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5 my-12 items-stretch">
+          {cards.map((card, idx) => {
+            const isHovered = hoveredCard === idx;
+            return (
+              <div
+                key={card.title}
+                onMouseEnter={() => setHoveredCard(idx)}
+                onMouseLeave={() => setHoveredCard(null)}
+                className={`relative rounded-3xl p-6 flex flex-col justify-between border-2 border-[var(--black)] shadow-[4px_4px_0px_var(--black)] transition-all duration-300 cursor-pointer ${
+                  card.color
+                } ${card.textColor} ${
+                  isHovered
+                    ? "scale-105 -translate-y-2 shadow-[7px_7px_0px_var(--black)] z-20"
+                    : ""
+                }`}
+                data-cursor-text={card.title.toUpperCase()}
+              >
+                {/* Sticker pinned top-right */}
+                <div className="absolute -top-3 -right-2 select-none">
+                  <img
+                    src={card.sticker}
+                    alt={card.title}
+                    className="w-10 h-10 md:w-12 md:h-12 drop-shadow-md transition-transform duration-300 group-hover:rotate-12"
+                  />
+                </div>
 
-          {/* Dynamic Mockup Body */}
-          <div className="p-6 md:p-8">
-            <div className="max-w-2xl mb-6">
-              <span className="font-mono text-xs text-[var(--lime)] uppercase tracking-wider block mb-1">
-                CAPABILITY // {capabilities[activeTab].num}
-              </span>
-              <h3 className="font-display font-bold text-2xl md:text-3xl text-white mb-2">
-                {capabilities[activeTab].title}
+                <div>
+                  <div className="font-mono text-xs uppercase tracking-wider opacity-75 mb-1">
+                    {card.subtitle}
+                  </div>
+                  <h3 className="font-display font-black text-2xl md:text-3xl tracking-tight mb-6">
+                    {card.title}
+                  </h3>
+
+                  <ul className="space-y-3 font-body text-xs md:text-sm">
+                    {card.bullets.map((bullet) => (
+                      <li key={bullet} className="flex items-start gap-2">
+                        <span className="mt-1 text-[10px] opacity-60">✦</span>
+                        <span className="leading-snug">{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mt-8 pt-4 border-t border-current/20 flex items-center justify-between text-xs font-mono">
+                  <span>0{idx + 1}</span>
+                  <span className="font-bold underline">explore →</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* ---------------- "proud to have worked with" logo grid (Screenshot 3) ---------------- */}
+        <div className="mt-28 pt-16 border-t border-[var(--line)]">
+          <div className="relative mb-12 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+            <div className="relative">
+              {/* Organic blue blob behind text */}
+              <svg
+                viewBox="0 0 120 100"
+                fill="none"
+                className="absolute -top-6 -left-8 w-28 h-auto text-[var(--blue)] opacity-40 pointer-events-none"
+              >
+                <path
+                  d="M 40 10 C 80 5, 110 30, 105 60 C 100 90, 60 95, 30 85 C 5 75, 10 35, 40 10 Z"
+                  fill="currentColor"
+                />
+              </svg>
+              <h3 className="font-display font-black text-3xl sm:text-5xl tracking-tight text-[var(--black)]">
+                proud to have worked{" "}
+                <span className="font-serif italic font-normal text-[var(--orange)]">
+                  with
+                </span>
               </h3>
-              <p className="font-body text-sm md:text-base text-white/70">
-                {capabilities[activeTab].desc}
-              </p>
             </div>
+            <div className="text-xs font-mono text-[var(--muted)]">
+              COMPANIES CONNECTED THROUGH OUR JOB INGESTION ENGINE
+            </div>
+          </div>
 
-            {/* Tab 0: Job Discovery Preview */}
-            {activeTab === 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {mockJobs.slice(0, 4).map((job) => (
-                  <div
-                    key={job.id}
-                    className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/30 transition-all space-y-3"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        <div
-                          className="w-10 h-10 rounded-lg text-[var(--black)] font-display font-black grid place-items-center"
-                          style={{ background: job.color }}
-                        >
-                          {job.logoLetter}
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-sm text-white">{job.title}</h4>
-                          <span className="text-xs text-white/60">
-                            {job.company} · {job.location}
-                          </span>
-                        </div>
-                      </div>
-                      <span className="px-2 py-1 rounded bg-[var(--lime)]/15 text-[var(--lime)] font-mono font-bold text-xs">
-                        {job.match}% match
-                      </span>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {job.matchedSkills.slice(0, 3).map((s) => (
-                        <span
-                          key={s}
-                          className="px-2 py-0.5 rounded bg-white/10 text-[11px] text-white/80"
-                        >
-                          {s}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+          {/* Grid of brand logos */}
+          <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-4 items-center">
+            {clientLogos.map((client) => (
+              <div
+                key={client.name}
+                className="p-4 rounded-2xl bg-white border border-[var(--line)] hover:border-[var(--black)] hover:shadow-[3px_3px_0px_var(--black)] transition-all duration-200 flex items-center justify-center h-20 group cursor-pointer"
+                data-cursor-text={client.name.toUpperCase()}
+              >
+                <img
+                  src={client.src}
+                  alt={client.name}
+                  className="max-h-8 max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-200 opacity-70 group-hover:opacity-100"
+                />
               </div>
-            )}
-
-            {/* Tab 1: Strengths Preview */}
-            {activeTab === 1 && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="p-5 rounded-xl bg-white/5 border border-white/10 space-y-2">
-                  <div className="text-xs font-mono text-[var(--orange)]">EVIDENCE CLUSTER 01</div>
-                  <h4 className="text-base font-bold text-white">Multi-brand Design Systems</h4>
-                  <p className="text-xs text-white/60">
-                    Validated from Blade 2.0 design token architecture and Figma variable tokens.
-                  </p>
-                  <div className="pt-2 text-xs font-bold text-emerald-400">
-                    96% percentile match
-                  </div>
-                </div>
-                <div className="p-5 rounded-xl bg-white/5 border border-white/10 space-y-2">
-                  <div className="text-xs font-mono text-[var(--blue)]">EVIDENCE CLUSTER 02</div>
-                  <h4 className="text-base font-bold text-white">0→1 Merchant Onboarding</h4>
-                  <p className="text-xs text-white/60">
-                    Validated from 31% activation improvement at Razorpay serving tier-1 merchants.
-                  </p>
-                  <div className="pt-2 text-xs font-bold text-emerald-400">
-                    91% percentile match
-                  </div>
-                </div>
-                <div className="p-5 rounded-xl bg-white/5 border border-white/10 space-y-2">
-                  <div className="text-xs font-mono text-[var(--lavender)]">
-                    EVIDENCE CLUSTER 03
-                  </div>
-                  <h4 className="text-base font-bold text-white">Cross-functional Strategy</h4>
-                  <p className="text-xs text-white/60">
-                    Leadership across engineering, risk, and commercial stakeholders.
-                  </p>
-                  <div className="pt-2 text-xs font-bold text-emerald-400">
-                    89% percentile match
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Tab 2: Skill Gaps Preview */}
-            {activeTab === 2 && (
-              <div className="p-5 rounded-xl bg-white/5 border border-white/10 space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-[var(--lime)]">
-                    RECOMMENDED 2-WEEK PATHWAY
-                  </span>
-                  <span className="text-xs text-white/50">Unlocks +₹8L–₹14L salary potential</span>
-                </div>
-                <div className="space-y-3">
-                  <div className="p-3.5 rounded-lg bg-black/40 border border-white/10 flex items-center justify-between">
-                    <div>
-                      <div className="text-sm font-bold text-white">
-                        Motion Prototyping (Rive / Principle)
-                      </div>
-                      <div className="text-xs text-white/50">
-                        Required by Linear and CRED for principal design roles.
-                      </div>
-                    </div>
-                    <span className="px-3 py-1 rounded-full bg-[var(--orange)] text-[var(--black)] font-bold text-xs">
-                      12h Sprint
-                    </span>
-                  </div>
-                  <div className="p-3.5 rounded-lg bg-black/40 border border-white/10 flex items-center justify-between">
-                    <div>
-                      <div className="text-sm font-bold text-white">
-                        AI Workflow Ergonomics & Evaluation
-                      </div>
-                      <div className="text-xs text-white/50">
-                        In-demand competency in 68% of new high-comp staff designer listings.
-                      </div>
-                    </div>
-                    <span className="px-3 py-1 rounded-full bg-[var(--blue)] text-[var(--black)] font-bold text-xs">
-                      8h Sprint
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Tab 3: Applications Preview */}
-            {activeTab === 3 && (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {["Saved (3)", "Applied (2)", "Interview (2)", "Offer (1)"].map((col, ci) => (
-                  <div
-                    key={col}
-                    className="p-3.5 rounded-xl bg-black/40 border border-white/10 space-y-2"
-                  >
-                    <div className="text-xs font-mono font-bold text-white/80 border-b border-white/10 pb-2">
-                      {col}
-                    </div>
-                    <div className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-xs space-y-1">
-                      <div className="font-bold text-white">
-                        {ci === 0 ? "Linear" : ci === 1 ? "Razorpay" : ci === 2 ? "CRED" : "Zepto"}
-                      </div>
-                      <div className="text-[11px] text-white/60">
-                        {ci === 0
-                          ? "Tailoring resume"
-                          : ci === 1
-                            ? "Follow-up tomorrow"
-                            : ci === 2
-                              ? "Round 2 Thursday"
-                              : "Written offer"}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Tab 4: Interview Coach Preview */}
-            {activeTab === 4 && (
-              <div className="p-5 rounded-xl bg-white/5 border border-white/10 space-y-3">
-                <div className="flex items-center gap-2 text-xs font-mono text-[var(--blue)]">
-                  <Icon name="bot" size={14} />
-                  <span>COACH SIMULATION // CRED PRINCIPAL CRAFT INTERVIEW</span>
-                </div>
-                <div className="p-4 rounded-lg bg-black/50 border border-white/10 text-sm text-white/90 leading-relaxed font-mono">
-                  &ldquo;Describe a time when engineering pushback threatened a high-craft design
-                  decision. How did you quantify customer trust to justify the extra sprint?&rdquo;
-                </div>
-                <div className="flex items-center justify-between text-xs text-white/60 pt-1">
-                  <span>Suggested STAR framework ready</span>
-                  <span className="text-[var(--lime)] font-bold">
-                    Feedback rubric: Systems + Influence
-                  </span>
-                </div>
-              </div>
-            )}
-
-            {/* Tab 5: Market Intelligence Preview */}
-            {activeTab === 5 && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
-                  <span className="text-[11px] font-mono text-white/50">
-                    MEDIAN SENIOR PAY (INDIA)
-                  </span>
-                  <div className="text-2xl font-display font-black text-white">₹38L – ₹52L</div>
-                  <span className="text-xs text-emerald-400 font-bold">+18% YoY in Bengaluru</span>
-                </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
-                  <span className="text-[11px] font-mono text-white/50">TOP DEMANDED SKILL</span>
-                  <div className="text-2xl font-display font-black text-[var(--orange)]">
-                    Design Systems
-                  </div>
-                  <span className="text-xs text-white/60">Tagged in 74% of lead roles</span>
-                </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
-                  <span className="text-[11px] font-mono text-white/50">HIRING VELOCITY</span>
-                  <div className="text-2xl font-display font-black text-[var(--lime)]">Surging</div>
-                  <span className="text-xs text-white/60">34 new verified roles this week</span>
-                </div>
-              </div>
-            )}
+            ))}
           </div>
         </div>
       </div>
