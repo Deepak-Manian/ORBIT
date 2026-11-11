@@ -2,28 +2,29 @@ export function PhilosophySection() {
   return (
     <section
       id="philosophy"
-      data-inertia-init
+      data-inertia-init=""
+      data-theme-section="light"
+      data-bg-section="light"
       className="future"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container">
         {/* ---------------- Clean Single Headline Matching Truus .future ---------------- */}
         <div className="future__row-title">
           <div className="future__col-title">
-            <h2 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] leading-[1.04] tracking-tight text-[var(--color-dark)] text-center">
+            <h2 className="h1">
               a career platform built for the future.{" "}
-              <span className="font-serif italic font-normal text-[var(--color-orange)]">
-                from campus to VP.
-              </span>
+              <em>from campus to VP.</em>
             </h2>
 
             {/* Hand-drawn SVG underline path + Love sticker */}
-            <div className="future__line">
+            <div data-scroll-animation="draw-sticker" className="future__line">
               <div className="future__title-line">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="100%"
                   viewBox="0 0 634 28"
                   fill="none"
+                  data-scroll-animation-target="draw"
                   className="overflow-visible"
                 >
                   <path
@@ -39,6 +40,7 @@ export function PhilosophySection() {
                 <img
                   src="/stickers/hands-love.svg"
                   alt="Love sticker"
+                  data-scroll-animation-target="sticker"
                   className="w-full h-auto drop-shadow-md select-none pointer-events-none"
                 />
               </div>
@@ -47,7 +49,7 @@ export function PhilosophySection() {
         </div>
 
         {/* ---------------- Truus 4 Overlapping Cards Stack + Flying Tags ---------------- */}
-        <div className="future__row-cards" data-inertia-init>
+        <div className="future__row-cards" data-inertia-init="">
           {/* Large organic blue background blob with hand-drawn pencil curves */}
           <div className="future__bg-shape">
             <svg
@@ -78,13 +80,14 @@ export function PhilosophySection() {
             </svg>
           </div>
 
-          {/* Card 1: -7.5deg tilt */}
+          {/* Card 1: Scout */}
           <div
-            data-inertia-element
+            data-inertia-element=""
             data-custom-cursor="click"
             className="future__cards-item cursor-pointer"
           >
-            <div data-inertia-child className="future-image">
+            <div data-inertia-child="" className="future-image">
+              <div className="future-image__before"></div>
               <img
                 src="/showcase/showcase1.avif"
                 alt="Scout - Tech Discovery"
@@ -93,22 +96,25 @@ export function PhilosophySection() {
             </div>
           </div>
 
-          {/* Flying Tag 1 (Pink) */}
-          <div data-inertia-element className="future__flying-tag">
-            <div data-inertia-child data-wiggle="2" className="tag" data-theme="Pink">
-              <h4 className="tag__h4 font-display font-black text-xs md:text-sm tracking-tight">
-                careers just wanna have fun!
-              </h4>
+          {/* Flying Tag 1 */}
+          <div data-inertia-element="" className="future__flying-tag">
+            <div data-inertia-child="" className="flying-tag__wrap">
+              <div data-theme="Pink" className="tag">
+                <h4 className="tag__h4 font-display font-black text-xs md:text-sm tracking-tight">
+                  careers just wanna have fun!
+                </h4>
+              </div>
             </div>
           </div>
 
-          {/* Card 2: +3.5deg tilt, -4em margin */}
+          {/* Card 2: Lens */}
           <div
-            data-inertia-element
+            data-inertia-element=""
             data-custom-cursor="click"
             className="future__cards-item is--2 cursor-pointer"
           >
-            <div data-inertia-child className="future-image">
+            <div data-inertia-child="" className="future-image">
+              <div className="future-image__before"></div>
               <img
                 src="/showcase/showcase2.avif"
                 alt="Lens - Evidence Matching"
@@ -117,22 +123,25 @@ export function PhilosophySection() {
             </div>
           </div>
 
-          {/* Flying Tag 2 (Orange) */}
-          <div data-inertia-element className="future__flying-tag is--2">
-            <div data-inertia-child data-wiggle="3" className="tag" data-theme="Orange">
-              <h4 className="tag__h4 font-display font-black text-xs md:text-sm tracking-tight">
-                evidence before confidence
-              </h4>
+          {/* Flying Tag 2 */}
+          <div data-inertia-element="" className="future__flying-tag is--2">
+            <div data-inertia-child="" className="flying-tag__wrap">
+              <div data-theme="Orange" className="tag">
+                <h4 className="tag__h4 font-display font-black text-xs md:text-sm tracking-tight">
+                  evidence before confidence
+                </h4>
+              </div>
             </div>
           </div>
 
-          {/* Card 3: -5deg tilt, -2.5em margin */}
+          {/* Card 3: Draft */}
           <div
-            data-inertia-element
+            data-inertia-element=""
             data-custom-cursor="click"
             className="future__cards-item is--3 cursor-pointer"
           >
-            <div data-inertia-child className="future-image">
+            <div data-inertia-child="" className="future-image">
+              <div className="future-image__before"></div>
               <img
                 src="/showcase/showcase3.avif"
                 alt="Coach - Simulation"
@@ -141,13 +150,14 @@ export function PhilosophySection() {
             </div>
           </div>
 
-          {/* Card 4: +3.5deg tilt, -2.375em margin */}
+          {/* Card 4: Coach */}
           <div
-            data-inertia-element
+            data-inertia-element=""
             data-custom-cursor="click"
             className="future__cards-item is--4 cursor-pointer"
           >
-            <div data-inertia-child className="future-image">
+            <div data-inertia-child="" className="future-image">
+              <div className="future-image__before"></div>
               <img
                 src="/showcase/showcase4.avif"
                 alt="Intelligence Vault"
@@ -156,12 +166,14 @@ export function PhilosophySection() {
             </div>
           </div>
 
-          {/* Flying Tag 3 (Lime Green) */}
-          <div data-inertia-element className="future__flying-tag is--3">
-            <div data-inertia-child data-wiggle="2" className="tag" data-theme="Lime">
-              <h4 className="tag__h4 font-display font-black text-xs md:text-sm tracking-tight">
-                mainstream is not a dirty word
-              </h4>
+          {/* Flying Tag 3 */}
+          <div data-inertia-element="" className="future__flying-tag is--3">
+            <div data-inertia-child="" className="flying-tag__wrap">
+              <div data-theme="Pink" className="tag">
+                <h4 className="tag__h4 font-display font-black text-xs md:text-sm tracking-tight">
+                  zero corporate slop
+                </h4>
+              </div>
             </div>
           </div>
         </div>

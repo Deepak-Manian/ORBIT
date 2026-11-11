@@ -97,91 +97,98 @@ export function CapabilitiesSection() {
   return (
     <section
       id="capabilities"
-      className="relative py-28 px-6 md:px-12 bg-[var(--color-offwhite)] text-[var(--color-dark)] overflow-hidden select-none"
+      data-bg-section="light"
+      data-theme-section="light"
+      className="services"
     >
-      <div className="max-w-6xl mx-auto">
-        {/* Section Tag */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--color-dark)]/5 border border-[var(--color-dark)]/10 text-xs font-mono font-bold uppercase tracking-wider text-[var(--muted)]">
-            <span>03</span> / capabilities
-          </div>
-          <div className="text-xs font-mono text-[var(--muted)]">
-            5 MODULES · 100% PRIVATE
-          </div>
-        </div>
-
+      <div className="container is--large">
         {/* ---------------- Headline matching Truus services: "call us if you need:" ---------------- */}
-        <div className="mb-16">
-          <h2 className="font-display font-black text-4xl sm:text-6xl md:text-7xl leading-[1.04] tracking-tight text-[var(--color-dark)]">
-            call us if you{" "}
-            <span className="font-serif italic font-normal text-[var(--color-orange)]">
-              need:
-            </span>
-          </h2>
-          {/* Double wavy underline SVG from Truus services */}
-          <svg
-            viewBox="0 0 160 18"
-            fill="none"
-            className="w-44 text-[var(--color-dark)] mt-2"
-          >
-            <path
-              d="M 2 12 C 55 5, 105 2, 158 2 M 30 16 C 65 12, 100 11, 135 11"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-            />
-          </svg>
+        <div className="services__row-title">
+          <div className="services__col-title">
+            <h2>
+              call us if you{" "}
+              <em>need:</em>
+            </h2>
+            {/* Double wavy underline SVG from Truus services */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="100%"
+              viewBox="0 0 159 17"
+              fill="none"
+              data-scroll-animation="draw-stagger"
+              className="services__line-svg"
+            >
+              <path
+                d="M1 12.1515C53.0771 5.7187 105.529 2.30552 158 1.93652"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M30.2672 15.9461C64.1899 12.8158 98.2663 11.3583 132.33 11.5735"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         </div>
 
-        {/* ---------------- 5 Vertical Accordion Fan-out Cards ---------------- */}
-        <div className="services__row-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5 my-12 items-stretch">
+        {/* ---------------- 5 Vertical Accordion Fan-out Cards (initMWG25) ---------------- */}
+        <div className="services__row-cards">
           {cards.map((card, idx) => {
-            const isHovered = hoveredCard === idx;
+            const offsets = [
+              { rot: 4, x: 0, y: -5.4 },
+              { rot: -2, x: 0, y: -2.7 },
+              { rot: 1, x: 0, y: 0 },
+              { rot: -3, x: 0, y: -3.5 },
+              { rot: 3, x: 0, y: -5 },
+            ][idx] || { rot: 0, x: 0, y: 0 };
+
             return (
               <div
                 key={card.title}
-                data-inertia-element
-                onMouseEnter={() => setHoveredCard(idx)}
-                onMouseLeave={() => setHoveredCard(null)}
-                className={`services-card__wrap relative rounded-3xl p-6 flex flex-col justify-between border-2 border-[var(--color-dark)] shadow-[5px_5px_0px_var(--color-dark)] transition-all duration-300 cursor-pointer ${
-                  card.color
-                } ${card.textColor} ${
-                  isHovered
-                    ? "scale-105 -translate-y-2 shadow-[8px_8px_0px_var(--color-dark)] z-20"
-                    : ""
-                }`}
-                data-custom-cursor={card.title.toUpperCase()}
+                data-offset-rot={offsets.rot}
+                data-offset-x={offsets.x}
+                data-offset-y={offsets.y}
+                className={`services-card__wrap is--${idx + 1}`}
               >
-                {/* Sticker pinned top-right with physical inertia */}
-                <div data-inertia-child className="absolute -top-3 -right-2 select-none">
-                  <img
-                    src={card.sticker}
-                    alt={card.title}
-                    className="w-11 h-11 md:w-13 md:h-13 drop-shadow-md transition-transform duration-300 hover:rotate-12"
-                  />
-                </div>
+                <div
+                  className="services-card"
+                  style={{
+                    backgroundColor:
+                      idx === 0
+                        ? "#2D7864"
+                        : idx === 1
+                        ? "#82A0FF"
+                        : idx === 2
+                        ? "#F5693C"
+                        : idx === 3
+                        ? "#A0325A"
+                        : "#F0BEFA",
+                    color: idx === 1 || idx === 4 ? "#000000" : "#ffffff",
+                  }}
+                >
+                  <div className="services-card__before"></div>
+                  <div className="services-card__content">
+                    <div className="services-card__sticker-camera">
+                      <img src={card.sticker} alt={card.title} style={{ width: 44, height: "auto" }} />
+                    </div>
 
-                <div>
-                  <div className="font-mono text-xs uppercase tracking-wider opacity-75 mb-1">
-                    {card.subtitle}
+                    <h3 className="services-card__h3" style={{ color: "inherit" }}>
+                      {card.title}
+                    </h3>
+
+                    <ul role="list" className="services-card__list">
+                      {card.bullets.map((bullet) => (
+                        <li key={bullet} className="services-card__list-item">
+                          <p className="services-card__bullet-p">{bullet}</p>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h3 className="font-display font-black text-2xl md:text-3xl tracking-tight mb-6">
-                    {card.title}
-                  </h3>
-
-                  <ul className="space-y-3 font-body text-xs md:text-sm">
-                    {card.bullets.map((bullet) => (
-                      <li key={bullet} className="flex items-start gap-2">
-                        <span className="mt-1 text-[10px] opacity-60">✦</span>
-                        <span className="leading-snug">{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mt-8 pt-4 border-t border-current/20 flex items-center justify-between text-xs font-mono">
-                  <span>0{idx + 1}</span>
-                  <span className="font-bold underline">explore →</span>
                 </div>
               </div>
             );

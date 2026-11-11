@@ -97,7 +97,13 @@ export function MoreStuffSection() {
   ];
 
   return (
-    <section className="relative py-28 px-6 md:px-12 bg-[var(--color-dark)] text-white overflow-hidden select-none">
+    <section
+      id="more-stuff"
+      data-bg-section="dark"
+      data-theme-section="dark"
+      data-inertia-init=""
+      className="relative py-28 px-6 md:px-12 bg-[var(--color-dark)] text-white overflow-hidden select-none"
+    >
       <div className="max-w-5xl mx-auto">
         {/* Organic Blue Flower Blob behind cards */}
         <svg
