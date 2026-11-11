@@ -144,6 +144,7 @@ export function MeetAgentsSection() {
       className="team"
     >
       <div className="container is--large">
+        {/* ---------------- Truus .team headline with hand-drawn SVG decorations ---------------- */}
         <div className="team__row-text">
           <div className="team__col-text">
             <h2 className="is--text-balance">
@@ -241,126 +242,9 @@ export function MeetAgentsSection() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-              </div>
-            </div>
-
-            {/* Card 5: Draft */}
-            <div
-              onClick={() => setActiveAgentId("draft")}
-              className="absolute w-44 sm:w-56 h-56 sm:h-72 p-4 rounded-2xl border-2 border-white/20 shadow-2xl translate-x-32 sm:translate-x-44 rotate-12 transition-transform duration-500 hover:-translate-y-4 hover:scale-105 z-10 bg-[#F5693C] text-white flex flex-col justify-between cursor-pointer"
-            >
-              <div className="flex justify-between items-start">
-                <span className="font-mono text-xs uppercase opacity-75">DRAFT · 05</span>
-                <img src="/stickers/lets-go.svg" alt="Lets go" className="w-8 h-8" />
-              </div>
-              <div>
-                <div className="font-display font-black text-xl leading-tight">Anti-Slop Pitch</div>
-                <div className="font-mono text-[11px] opacity-80 mt-1">Zero AI-generated cringe</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ---------------- Headline with hand-drawn loop ---------------- */}
-        <div className="mb-16 max-w-4xl">
-          <h2 className="font-display font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.04] tracking-tight text-white">
-            we are a{" "}
-            <span className="relative inline-block px-3 py-1 mx-1">
-              <span className="relative z-10 font-serif italic font-normal text-[var(--color-orange)]">
-                future-proof
-              </span>
-              {/* Hand-drawn oval loop encircling future-proof */}
-              <svg
-                viewBox="0 0 240 70"
-                fill="none"
-                className="absolute inset-0 w-full h-full pointer-events-none text-white overflow-visible"
-              >
-                <ellipse
-                  cx="120"
-                  cy="35"
-                  rx="115"
-                  ry="30"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                />
-              </svg>
-            </span>{" "}
-            collective of 8 specialized AI agents.
-            <br />
-            <span className="text-[var(--color-lightgreen)] underline decoration-wavy underline-offset-8">
-              not to brag!
-            </span>
-          </h2>
-        </div>
-
-        {/* ---------------- Staggered Agent Swarm Cards (Zero Random Dutch Photos!) ---------------- */}
-        <div className="relative my-16 py-8">
-          {/* Background Organic Blobs */}
-          <svg
-            viewBox="0 0 200 200"
-            fill="none"
-            className="absolute top-10 right-10 w-64 md:w-96 h-auto text-[var(--color-green)] opacity-40 pointer-events-none"
-          >
-            <path
-              d="M 100 20 C 130 5, 170 30, 180 70 C 190 110, 160 150, 120 175 C 80 200, 40 180, 25 140 C 10 100, 30 60, 60 30 Z"
-              fill="currentColor"
-            />
-          </svg>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 relative z-10">
-            {agentCards.map((agent) => {
-              const isActive = activeAgentId === agent.id;
-              return (
-                <div
-                  key={agent.id}
-                  onClick={() => setActiveAgentId(agent.id)}
-                  data-inertia-element
-                  data-custom-cursor="click"
-                  className={`group relative p-4 rounded-3xl border-2 transition-all duration-300 cursor-pointer flex flex-col justify-between h-56 sm:h-64 ${
-                    agent.color
-                  } ${agent.textColor} ${agent.tilt} ${
-                    isActive
-                      ? "scale-105 rotate-0 z-30 shadow-[6px_6px_0px_white] border-white"
-                      : "border-black/30 hover:scale-102 hover:rotate-0 hover:z-20 shadow-[4px_4px_0px_rgba(0,0,0,0.4)]"
-                  }`}
-                >
-                  {/* Sticker badge */}
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] font-bold tracking-wider uppercase opacity-80">
-                      AI AGENT
-                    </span>
-                    <img
-                      src={agent.sticker}
-                      alt={agent.name}
-                      className="w-8 h-8 drop-shadow-md group-hover:scale-110 transition-transform"
-                    />
-                  </div>
-
-                  <div>
-                    <div className="font-display font-black text-2xl leading-none">
-                      {agent.name}
-                    </div>
-                    <div className="font-mono text-xs opacity-80 mt-1 font-medium">
-                      {agent.role}
-                    </div>
-                  </div>
-
-                  <div className="pt-2 border-t border-current/20 flex items-center justify-between text-[11px] font-mono">
-                    <span className="font-bold underline">
-                      {isActive ? "active" : "inspect →"}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
 
         {/* ---------------- Interactive Agent Intelligence Dialogue Box ---------------- */}
-        <div className="relative mt-20 p-6 sm:p-8 rounded-3xl bg-zinc-950/80 border-2 border-white/20 backdrop-blur-xl shadow-[8px_8px_0px_var(--color-dark)]">
+        <div className="relative mt-12 p-6 sm:p-8 rounded-3xl bg-zinc-950/80 border-2 border-white/20 backdrop-blur-xl shadow-[8px_8px_0px_rgba(0,0,0,0.5)]">
           <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10">
             <div className="flex items-center gap-3">
               <span className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
@@ -370,20 +254,19 @@ export function MeetAgentsSection() {
               <span className="px-3 py-1 rounded-full bg-white/10 text-xs font-mono text-[var(--color-lightgreen)]">
                 {currentData.roleTitle}
               </span>
-              <span className="hidden md:inline-block px-2.5 py-0.5 rounded-full bg-[var(--color-orange)] text-[var(--color-dark)] text-[10px] font-mono font-bold">
+              <span className="hidden md:inline-block px-2.5 py-0.5 rounded-full bg-[var(--color-orange)] text-black text-[10px] font-mono font-bold">
                 {currentData.stats}
               </span>
             </div>
-
-            {/* Agent Selector Pills */}
             <div className="flex flex-wrap items-center gap-2">
               {mockAgents.map((ag) => (
                 <button
                   key={ag.id}
+                  type="button"
                   onClick={() => setActiveAgentId(ag.id)}
                   className={`px-3 py-1 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
                     activeAgentId === ag.id
-                      ? "bg-[var(--color-orange)] text-[var(--color-dark)] font-bold shadow-sm"
+                      ? "bg-[var(--color-orange)] text-black font-bold shadow-sm"
                       : "bg-white/10 text-white/70 hover:text-white hover:bg-white/15"
                   }`}
                 >
@@ -392,20 +275,13 @@ export function MeetAgentsSection() {
               ))}
             </div>
           </div>
-
-          {/* Interactive Dialogue Stream */}
           <div className="mt-6 space-y-4">
-            {/* User prompt */}
             <div className="flex items-start gap-3">
-              <div className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center font-mono text-xs font-bold text-white shrink-0 mt-0.5">
-                U
-              </div>
+              <div className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center font-mono text-xs font-bold text-white shrink-0 mt-0.5">U</div>
               <div className="p-3.5 rounded-2xl rounded-tl-sm bg-white/10 text-white font-mono text-sm leading-relaxed max-w-2xl border border-white/10">
                 "{currentData.prompt}"
               </div>
             </div>
-
-            {/* Agent response */}
             <div className="flex items-start gap-3">
               <div className={`w-7 h-7 rounded-full ${currentData.badgeColor} ${currentData.textColor} flex items-center justify-center font-display font-black text-xs shrink-0 mt-0.5 shadow-sm`}>
                 {activeAgentId.charAt(0).toUpperCase()}
