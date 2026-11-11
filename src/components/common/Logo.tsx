@@ -1,21 +1,57 @@
+import { OrbitScriptLogo } from "./OrbitScriptLogo";
+
 interface LogoProps {
   light?: boolean;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
   onClick?: () => void;
   className?: string;
+  variant?: "badge" | "script";
 }
 
-export function Logo({ light = false, size = "md", onClick, className = "" }: LogoProps) {
+export function Logo({
+  light = false,
+  size = "md",
+  onClick,
+  className = "",
+  variant = "badge",
+}: LogoProps) {
+  if (variant === "script") {
+    const scriptWidths = {
+      sm: 90,
+      md: 120,
+      lg: 160,
+      xl: 220,
+    };
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        className={`border-none bg-transparent p-0 cursor-pointer select-none transition-transform hover:scale-105 active:scale-95 ${
+          light ? "text-white" : "text-[var(--black)]"
+        } ${className}`}
+        aria-label="ORBIT Home"
+      >
+        <OrbitScriptLogo
+          width={scriptWidths[size]}
+          color={light ? "#FFFFFF" : "#080808"}
+          className="h-auto"
+        />
+      </button>
+    );
+  }
+
   const sizeClasses = {
     sm: "text-lg",
     md: "text-2xl",
     lg: "text-3xl",
+    xl: "text-4xl",
   };
 
   const orbSizes = {
     sm: "w-5 h-5 text-xs",
     md: "w-7 h-7 text-sm",
     lg: "w-9 h-9 text-base",
+    xl: "w-11 h-11 text-lg",
   };
 
   return (
@@ -49,10 +85,9 @@ export function Logo({ light = false, size = "md", onClick, className = "" }: Lo
         </svg>
         <span className="relative z-10 leading-none">o</span>
       </span>
-      <span className="font-display font-extrabold tracking-tight">
-        orbit<em className="text-[var(--orange)] not-italic">.</em>
+      <span className="font-display font-black tracking-tight leading-none">
+        orbit<span className="text-[var(--orange)]">.</span>
       </span>
     </button>
   );
 }
-
