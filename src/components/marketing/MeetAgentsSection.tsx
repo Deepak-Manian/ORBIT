@@ -1,111 +1,282 @@
 import { useState } from "react";
 import { mockAgents } from "../../mock/agents";
-import { Icon } from "../common/Icon";
 
 export function MeetAgentsSection() {
   const [activeAgentId, setActiveAgentId] = useState("orbit");
 
-  const activeAgent = mockAgents.find((a) => a.id === activeAgentId) || mockAgents[0];
-
-  const agentDialogues: Record<string, { prompt: string; reply: string; portrait: string; sticker: string }> = {
+  const agentDialogues: Record<
+    string,
+    {
+      codename: string;
+      roleTitle: string;
+      prompt: string;
+      reply: string;
+      unhingedQuote: string;
+      sticker: string;
+      badgeColor: string;
+      textColor: string;
+      tagTheme: string;
+      stats: string;
+    }
+  > = {
     orbit: {
+      codename: "ORBIT-01",
+      roleTitle: "Swarm Orchestrator",
       prompt: "What is my strongest career move right now?",
       reply:
-        "Based on your recent design token architecture work at Razorpay, Scout surfaced the Lead Design System role at Linear and Staff Product Designer at CRED. Linear deepens your tool-craft trajectory, while CRED gives you leadership scope. Shall Draft prepare bespoke briefs?",
-      portrait: "/team/ferry.avif",
+        "Scout found unlisted Staff openings at Linear and CRED before they hit LinkedIn. Linear doubles your product ergonomics authority; CRED gives you high-scale compensation (₹58L–₹72L). I already had Lens audit your proof points. Ready to deploy Draft?",
+      unhingedQuote: "Runs your career intelligence swarm while you sleep. Zero data sold.",
       sticker: "/stickers/smiley.svg",
+      badgeColor: "bg-[#E6FAB9]",
+      textColor: "text-zinc-950",
+      tagTheme: "Lime",
+      stats: "8 LOCAL AGENTS · 0 PRIVACY LEAKS",
     },
     scout: {
+      codename: "SCOUT-02",
+      roleTitle: "Ghost-Job Slayer",
       prompt: "Find roles paying > ₹45L that value ergonomic systems.",
       reply:
-        "Scout checked 18 company registries across Bengaluru and Remote. Linear (₹48–62L), BrowserStack (₹45–60L), and Razorpay (₹45–55L) have verified openings today. Zero agency reposts.",
-      portrait: "/team/destiny.avif",
-      sticker: "/stickers/good-vibes.svg",
+        "Scanned 18 direct ATS endpoints across Bengaluru, Hyderabad, and Remote. Filtered out 43 ghost jobs that were reposted 6 times just to fake company growth. Linear (₹48–62L) and Razorpay (₹45–55L) have verified open backdoors today.",
+      unhingedQuote: "Throws zombie job postings directly into the sun. 0 recruiter spam.",
+      sticker: "/stickers/camera.svg",
+      badgeColor: "bg-[#2D7864]",
+      textColor: "text-white",
+      tagTheme: "Lime",
+      stats: "86% GHOST REJECTION RATE",
     },
     lens: {
+      codename: "LENS-03",
+      roleTitle: "Evidence Interrogator",
       prompt: "Evaluate my compatibility with Linear's Product Designer role.",
       reply:
-        "94% compatibility match. Your design token refactor precisely matches their requirement for ergonomic, keyboard-first systems. One gap: they look for interactive Rive/Principle motion work.",
-      portrait: "/team/patrick.avif",
+        "94% compatibility match. Your component architecture proof directly aligns with their keyboard-first workflow. I purged 3 buzzwords from your overview ('synergistic', 'passionate', 'rockstar') and replaced them with your verified GitHub commits.",
+      unhingedQuote: "Recruiters spend 6 seconds on your PDF. Make them choke on their matcha.",
       sticker: "/stickers/cute.svg",
-    },
-    draft: {
-      prompt: "Draft an introduction to the Design Director at Linear.",
-      reply:
-        "I drafted a 3-paragraph peer note focused on your component ergonomics and how they parallel Linear Insights. Zero generic buzzwords like 'passionate' or 'synergy'. Ready for your review.",
-      portrait: "/team/kevin.avif",
-      sticker: "/stickers/lets-go.svg",
-    },
-    track: {
-      prompt: "What follow-ups are due this week?",
-      reply:
-        "You have a day-3 follow-up due tomorrow for Razorpay. Your CRED design interview is confirmed for Thursday at 3 PM. Want Coach to run a 15-minute simulated practice?",
-      portrait: "/team/kimmi.avif",
-      sticker: "/stickers/100.svg",
+      badgeColor: "bg-[#82A0FF]",
+      textColor: "text-zinc-950",
+      tagTheme: "Pink",
+      stats: "4.2s AUDIT · 0% CORPORATE SLOP",
     },
     coach: {
-      prompt: "Simulate a tough question for CRED's craft rubric.",
+      codename: "COACH-04",
+      roleTitle: "CTC Poker & Sparring",
+      prompt: "Simulate a tough salary question from HR.",
       reply:
-        "Here's CRED's favorite craft prompt: 'How do you defend high-effort visual polish when product managers are pushing to ship an MVP fast?' Let's run a live 2-minute response.",
-      portrait: "/team/japie.avif",
+        "HR just asked: 'What is your current CTC and expected hike?' DO NOT SAY A NUMBER. Here's your line: 'Our budget target is calibrated to market median (₹55L–₹68L). Let's align on engineering scope first.' Now let's practice defending it.",
+      unhingedQuote: "Slaps your hand away when you're about to lowball yourself in an offer call.",
       sticker: "/stickers/fistbump.svg",
+      badgeColor: "bg-[#A0325A]",
+      textColor: "text-white",
+      tagTheme: "Orange",
+      stats: "AVERAGE SALARY LIFT: +₹14L",
+    },
+    draft: {
+      codename: "DRAFT-05",
+      roleTitle: "Anti-Slop Ghostwriter",
+      prompt: "Draft an introduction to the Engineering Director at Linear.",
+      reply:
+        "Generated a concise 3-paragraph peer note focused on your component ergonomics and zero generic boilerplate. No 'I hope this email finds you well', no begging, just high-signal engineering proof.",
+      unhingedQuote: "Cold outreach emails that humans actually reply to, written in plain English.",
+      sticker: "/stickers/lets-go.svg",
+      badgeColor: "bg-[#F5693C]",
+      textColor: "text-white",
+      tagTheme: "Orange",
+      stats: "68% RECRUITER RESPONSE RATE",
+    },
+    track: {
+      codename: "TRACK-06",
+      roleTitle: "Application Autopilot",
+      prompt: "What follow-ups are due this week?",
+      reply:
+        "Day-4 follow-up due for Razorpay. CRED design round confirmed for Thursday 3 PM. Company X hasn't responded in 7 days—I flagged them on your radar so you don't waste mental RAM waiting.",
+      unhingedQuote: "Radar monitoring that keeps recruiters sweating instead of ghosting you.",
+      sticker: "/stickers/100.svg",
+      badgeColor: "bg-[#F0BEFA]",
+      textColor: "text-zinc-950",
+      tagTheme: "Pink",
+      stats: "100% PRIVATE OFFLINE ARCHIVE",
     },
     signal: {
-      prompt: "What is the compensation distribution for Staff Designers in India?",
+      codename: "SIGNAL-07",
+      roleTitle: "Compensation Intel",
+      prompt: "What is the real compensation distribution for Staff roles in India?",
       reply:
-        "Median staff pay in Bengaluru is ₹42L–₹58L base, with Series C+ startups offering up to ₹72L total compensation including ESOPs. Roles requiring AI UX command a 14% premium.",
-      portrait: "/team/nikki.avif",
+        "Bengaluru median staff base is ₹44L–₹60L, with Series C+ startups topping ₹74L total comp with liquid ESOPs. Anyone offering under ₹38L for Staff is lowballing. We know their budget before you say hi.",
+      unhingedQuote: "Real salaries from verified offer letters, not fake Glassdoor averages.",
       sticker: "/stickers/bam.svg",
+      badgeColor: "bg-[#FDE047]",
+      textColor: "text-zinc-950",
+      tagTheme: "Lime",
+      stats: "VERIFIED CTC TELEMETRY",
     },
     sentinel: {
+      codename: "SENTINEL-08",
+      roleTitle: "Scam & Phishing Quarantine",
       prompt: "Verify this recruiter outreach message from LinkedIn.",
       reply:
-        "The recruiter's domain was registered 12 days ago and asks for an upfront ₹1,500 'interview assessment fee'. This is a verified scam pattern. Sentinel flagged and quarantined it.",
-      portrait: "/team/ferry.avif",
+        "The recruiter domain was registered 9 days ago and requests an upfront ₹1,500 'assessment platform fee'. Verified fraud pattern. Sentinel quarantined the thread and blacklisted the domain.",
+      unhingedQuote: "Sniffs out Telegram job scammers and quarantine-nukes them instantly.",
       sticker: "/stickers/hands-love.svg",
+      badgeColor: "bg-[#1E293B]",
+      textColor: "text-emerald-400",
+      tagTheme: "Lime",
+      stats: "0 SCAMS · 100% VERIFIED LEADS",
     },
   };
 
   const currentData = agentDialogues[activeAgentId] || agentDialogues.orbit;
 
+  const agentCards = [
+    { id: "orbit", name: "ORBIT", role: "Orchestrator", color: "bg-[#E6FAB9]", textColor: "text-black", sticker: "/stickers/smiley.svg", tilt: "-rotate-3" },
+    { id: "scout", name: "SCOUT", role: "Job Discovery", color: "bg-[#2D7864]", textColor: "text-white", sticker: "/stickers/camera.svg", tilt: "rotate-2 md:-translate-y-6" },
+    { id: "lens", name: "LENS", role: "Skill Proof", color: "bg-[#82A0FF]", textColor: "text-black", sticker: "/stickers/cute.svg", tilt: "-rotate-2" },
+    { id: "coach", name: "COACH", role: "CTC Poker", color: "bg-[#A0325A]", textColor: "text-white", sticker: "/stickers/fistbump.svg", tilt: "rotate-3 md:translate-y-4" },
+    { id: "draft", name: "DRAFT", role: "Anti-Slop", color: "bg-[#F5693C]", textColor: "text-white", sticker: "/stickers/lets-go.svg", tilt: "-rotate-3" },
+    { id: "track", name: "TRACK", role: "Autopilot", color: "bg-[#F0BEFA]", textColor: "text-black", sticker: "/stickers/100.svg", tilt: "rotate-2" },
+  ];
+
   return (
     <section
       id="agents"
-      className="relative py-28 px-6 md:px-12 bg-[var(--black)] text-white overflow-hidden"
+      className="relative py-28 px-6 md:px-12 bg-[var(--color-dark)] text-white overflow-hidden select-none"
     >
       <div className="max-w-6xl mx-auto">
         {/* Top Tag */}
         <div className="flex items-center justify-between mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-mono font-bold uppercase tracking-wider text-[var(--lime)]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-mono font-bold uppercase tracking-wider text-[var(--color-lightgreen)]">
             <span>02</span> / the collective
           </div>
-          <div className="hidden sm:inline-block px-3 py-1 rounded-full bg-[var(--orange)] text-[var(--black)] text-xs font-display font-black uppercase tracking-wider">
+          <div className="hidden sm:inline-block px-3 py-1 rounded-full bg-[var(--color-orange)] text-[var(--color-dark)] text-xs font-display font-black uppercase tracking-wider">
             8 autonomous agents
           </div>
         </div>
 
-        {/* ---------------- Headline matching Screenshot 3 ---------------- */}
-        <div className="mb-20 max-w-4xl">
+        {/* ---------------- Top Fanned-out Showcase Deck (Truus 'flick' mechanics) ---------------- */}
+        <div className="relative py-8 mb-20 flex items-center justify-center overflow-visible" data-custom-cursor="drag">
+          <div className="relative w-full max-w-2xl h-64 sm:h-80 flex items-center justify-center">
+            {/* Card 1: Scout */}
+            <div
+              onClick={() => setActiveAgentId("scout")}
+              className="absolute w-44 sm:w-56 h-56 sm:h-72 p-4 rounded-2xl border-2 border-white/20 shadow-2xl -translate-x-32 sm:-translate-x-44 -rotate-12 transition-transform duration-500 hover:-translate-y-4 hover:scale-105 z-10 bg-[#2D7864] text-white flex flex-col justify-between cursor-pointer"
+            >
+              <div className="flex justify-between items-start">
+                <span className="font-mono text-xs uppercase opacity-75">SCOUT · 02</span>
+                <img src="/stickers/camera.svg" alt="Camera" className="w-8 h-8" />
+              </div>
+              <div>
+                <div className="font-display font-black text-xl leading-tight">Ghost-Job Slayer</div>
+                <div className="font-mono text-[11px] opacity-80 mt-1">Cuts 86% of fake listings</div>
+              </div>
+            </div>
+
+            {/* Card 2: Lens */}
+            <div
+              onClick={() => setActiveAgentId("lens")}
+              className="absolute w-44 sm:w-56 h-56 sm:h-72 p-4 rounded-2xl border-2 border-white/30 shadow-2xl -translate-x-16 sm:-translate-x-20 -rotate-6 transition-transform duration-500 hover:-translate-y-4 hover:scale-105 z-20 bg-[#82A0FF] text-black flex flex-col justify-between cursor-pointer"
+            >
+              <div className="flex justify-between items-start">
+                <span className="font-mono text-xs uppercase opacity-75">LENS · 03</span>
+                <img src="/stickers/cute.svg" alt="Cute" className="w-8 h-8" />
+              </div>
+              <div>
+                <div className="font-display font-black text-xl leading-tight">Evidence Audit</div>
+                <div className="font-mono text-[11px] opacity-80 mt-1">Zero resume fluff</div>
+              </div>
+            </div>
+
+            {/* Center Active Showcase Card: ORBIT */}
+            <div
+              onClick={() => setActiveAgentId("orbit")}
+              className="absolute w-48 sm:w-64 h-60 sm:h-80 p-5 rounded-2xl border-3 border-[var(--color-pink)] shadow-[0_20px_50px_rgba(0,0,0,0.8)] scale-105 z-30 bg-[#E6FAB9] text-black flex flex-col justify-between cursor-pointer group"
+              data-custom-cursor="click"
+            >
+              <div className="flex justify-between items-start">
+                <div>
+                  <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[var(--color-orange)]">Core Conductor</span>
+                  <div className="font-display font-black text-2xl">ORBIT-01</div>
+                </div>
+                <img src="/stickers/smiley.svg" alt="Smiley" className="w-10 h-10 group-hover:rotate-12 transition-transform" />
+              </div>
+              <div className="p-3 bg-black/10 rounded-xl font-mono text-xs leading-relaxed">
+                "Coordinates 8 agents on your own private AI keys. No telemetry sold."
+              </div>
+              <div className="font-mono text-[11px] font-bold text-center bg-black text-white py-1.5 rounded-lg uppercase tracking-wider">
+                Click to Inspect
+              </div>
+            </div>
+
+            {/* Card 4: Coach */}
+            <div
+              onClick={() => setActiveAgentId("coach")}
+              className="absolute w-44 sm:w-56 h-56 sm:h-72 p-4 rounded-2xl border-2 border-white/30 shadow-2xl translate-x-16 sm:translate-x-20 rotate-6 transition-transform duration-500 hover:-translate-y-4 hover:scale-105 z-20 bg-[#A0325A] text-white flex flex-col justify-between cursor-pointer"
+            >
+              <div className="flex justify-between items-start">
+                <span className="font-mono text-xs uppercase opacity-75">COACH · 04</span>
+                <img src="/stickers/fistbump.svg" alt="Fistbump" className="w-8 h-8" />
+              </div>
+              <div>
+                <div className="font-display font-black text-xl leading-tight">CTC Poker Spar</div>
+                <div className="font-mono text-[11px] opacity-80 mt-1">Never say a number first</div>
+              </div>
+            </div>
+
+            {/* Card 5: Draft */}
+            <div
+              onClick={() => setActiveAgentId("draft")}
+              className="absolute w-44 sm:w-56 h-56 sm:h-72 p-4 rounded-2xl border-2 border-white/20 shadow-2xl translate-x-32 sm:translate-x-44 rotate-12 transition-transform duration-500 hover:-translate-y-4 hover:scale-105 z-10 bg-[#F5693C] text-white flex flex-col justify-between cursor-pointer"
+            >
+              <div className="flex justify-between items-start">
+                <span className="font-mono text-xs uppercase opacity-75">DRAFT · 05</span>
+                <img src="/stickers/lets-go.svg" alt="Lets go" className="w-8 h-8" />
+              </div>
+              <div>
+                <div className="font-display font-black text-xl leading-tight">Anti-Slop Pitch</div>
+                <div className="font-mono text-[11px] opacity-80 mt-1">Zero AI-generated cringe</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ---------------- Headline with hand-drawn loop ---------------- */}
+        <div className="mb-16 max-w-4xl">
           <h2 className="font-display font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.04] tracking-tight text-white">
             we are a{" "}
-            <span className="font-serif italic font-normal text-[var(--orange)]">
-              future-proof
+            <span className="relative inline-block px-3 py-1 mx-1">
+              <span className="relative z-10 font-serif italic font-normal text-[var(--color-orange)]">
+                future-proof
+              </span>
+              {/* Hand-drawn oval loop encircling future-proof */}
+              <svg
+                viewBox="0 0 240 70"
+                fill="none"
+                className="absolute inset-0 w-full h-full pointer-events-none text-white overflow-visible"
+              >
+                <ellipse
+                  cx="120"
+                  cy="35"
+                  rx="115"
+                  ry="30"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                />
+              </svg>
             </span>{" "}
             collective of 8 specialized AI agents.
             <br />
-            <span className="text-[var(--lime)] underline decoration-wavy underline-offset-8">
+            <span className="text-[var(--color-lightgreen)] underline decoration-wavy underline-offset-8">
               not to brag!
             </span>
           </h2>
         </div>
 
-        {/* ---------------- Staggered Scattered Portraits Grid (Screenshot 3) ---------------- */}
-        <div className="relative my-20 py-12">
-          {/* Background Organic Green Flower Blob */}
+        {/* ---------------- Staggered Agent Swarm Cards (Zero Random Dutch Photos!) ---------------- */}
+        <div className="relative my-16 py-8">
+          {/* Background Organic Blobs */}
           <svg
             viewBox="0 0 200 200"
             fill="none"
-            className="absolute top-10 right-10 w-64 md:w-96 h-auto text-[var(--green)] opacity-60 pointer-events-none"
+            className="absolute top-10 right-10 w-64 md:w-96 h-auto text-[var(--color-green)] opacity-40 pointer-events-none"
           >
             <path
               d="M 100 20 C 130 5, 170 30, 180 70 C 190 110, 160 150, 120 175 C 80 200, 40 180, 25 140 C 10 100, 30 60, 60 30 Z"
@@ -113,159 +284,68 @@ export function MeetAgentsSection() {
             />
           </svg>
 
-          {/* Background Electric Blue Organic Blob */}
-          <svg
-            viewBox="0 0 200 200"
-            fill="none"
-            className="absolute bottom-4 left-6 w-56 md:w-80 h-auto text-[var(--blue)] opacity-50 pointer-events-none"
-          >
-            <path
-              d="M 80 25 C 120 10, 160 40, 170 80 C 180 120, 140 160, 100 170 C 60 180, 20 150, 15 110 C 10 70, 40 40, 80 25 Z"
-              fill="currentColor"
-            />
-          </svg>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 relative z-10">
+            {agentCards.map((agent) => {
+              const isActive = activeAgentId === agent.id;
+              return (
+                <div
+                  key={agent.id}
+                  onClick={() => setActiveAgentId(agent.id)}
+                  data-inertia-element
+                  data-custom-cursor="click"
+                  className={`group relative p-4 rounded-3xl border-2 transition-all duration-300 cursor-pointer flex flex-col justify-between h-56 sm:h-64 ${
+                    agent.color
+                  } ${agent.textColor} ${agent.tilt} ${
+                    isActive
+                      ? "scale-105 rotate-0 z-30 shadow-[6px_6px_0px_white] border-white"
+                      : "border-black/30 hover:scale-102 hover:rotate-0 hover:z-20 shadow-[4px_4px_0px_rgba(0,0,0,0.4)]"
+                  }`}
+                >
+                  {/* Sticker badge */}
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[10px] font-bold tracking-wider uppercase opacity-80">
+                      AI AGENT
+                    </span>
+                    <img
+                      src={agent.sticker}
+                      alt={agent.name}
+                      className="w-8 h-8 drop-shadow-md group-hover:scale-110 transition-transform"
+                    />
+                  </div>
 
-          {/* Connecting Curved Dashed Lines */}
-          <svg
-            viewBox="0 0 900 600"
-            fill="none"
-            className="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
-          >
-            <path
-              d="M 220 160 Q 350 240, 480 180 T 720 280 T 450 480"
-              stroke="white"
-              strokeWidth="1.8"
-              strokeDasharray="6 6"
-              opacity="0.3"
-            />
-          </svg>
+                  <div>
+                    <div className="font-display font-black text-2xl leading-none">
+                      {agent.name}
+                    </div>
+                    <div className="font-mono text-xs opacity-80 mt-1 font-medium">
+                      {agent.role}
+                    </div>
+                  </div>
 
-          {/* Staggered Agent Cards */}
-          <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center">
-            {/* 1. Patrick / Lens */}
-            <div
-              onClick={() => setActiveAgentId("lens")}
-              className={`group relative p-2.5 bg-white/10 backdrop-blur-md rounded-2xl border-2 transition-all duration-300 cursor-pointer ${
-                activeAgentId === "lens"
-                  ? "border-[var(--orange)] shadow-[4px_4px_0px_var(--orange)] scale-105 z-20"
-                  : "border-white/20 hover:border-white/50 -rotate-2 hover:rotate-0"
-              }`}
-              data-cursor-text="LENS"
-            >
-              <div className="relative h-44 sm:h-56 rounded-xl overflow-hidden bg-zinc-800">
-                <img
-                  src="/team/patrick.avif"
-                  alt="Patrick - Lens"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <img
-                  src="/stickers/cute.svg"
-                  alt="Cute"
-                  className="absolute bottom-2 left-2 w-10 h-10 drop-shadow-md"
-                />
-              </div>
-              <div className="pt-2 text-center">
-                <div className="font-display font-bold text-sm text-white">Lens</div>
-                <div className="font-mono text-[11px] text-white/60">Resume & Skills</div>
-              </div>
-            </div>
-
-            {/* 2. Ferry / ORBIT (staggered down) */}
-            <div
-              onClick={() => setActiveAgentId("orbit")}
-              className={`group relative p-2.5 bg-white/10 backdrop-blur-md rounded-2xl border-2 transition-all duration-300 cursor-pointer md:translate-y-8 ${
-                activeAgentId === "orbit"
-                  ? "border-[var(--lime)] shadow-[4px_4px_0px_var(--lime)] scale-105 z-20"
-                  : "border-white/20 hover:border-white/50 rotate-3 hover:rotate-0"
-              }`}
-              data-cursor-text="ORBIT"
-            >
-              <div className="relative h-44 sm:h-56 rounded-xl overflow-hidden bg-zinc-800">
-                <img
-                  src="/team/ferry.avif"
-                  alt="Ferry - ORBIT"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <img
-                  src="/stickers/smiley.svg"
-                  alt="Smiley"
-                  className="absolute -top-2 -right-2 w-12 h-12 drop-shadow-md"
-                />
-              </div>
-              <div className="pt-2 text-center">
-                <div className="font-display font-bold text-sm text-[var(--lime)]">ORBIT</div>
-                <div className="font-mono text-[11px] text-white/60">Orchestrator</div>
-              </div>
-            </div>
-
-            {/* 3. Destiny / Scout (staggered up) */}
-            <div
-              onClick={() => setActiveAgentId("scout")}
-              className={`group relative p-2.5 bg-white/10 backdrop-blur-md rounded-2xl border-2 transition-all duration-300 cursor-pointer md:-translate-y-6 ${
-                activeAgentId === "scout"
-                  ? "border-[var(--blue)] shadow-[4px_4px_0px_var(--blue)] scale-105 z-20"
-                  : "border-white/20 hover:border-white/50 -rotate-3 hover:rotate-0"
-              }`}
-              data-cursor-text="SCOUT"
-            >
-              <div className="relative h-44 sm:h-56 rounded-xl overflow-hidden bg-zinc-800">
-                <img
-                  src="/team/destiny.avif"
-                  alt="Destiny - Scout"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <img
-                  src="/stickers/good-vibes.svg"
-                  alt="Good Vibes"
-                  className="absolute -top-3 left-2 w-12 h-12 drop-shadow-md"
-                />
-              </div>
-              <div className="pt-2 text-center">
-                <div className="font-display font-bold text-sm text-white">Scout</div>
-                <div className="font-mono text-[11px] text-white/60">Job Discovery</div>
-              </div>
-            </div>
-
-            {/* 4. Japie / Coach (staggered down) */}
-            <div
-              onClick={() => setActiveAgentId("coach")}
-              className={`group relative p-2.5 bg-white/10 backdrop-blur-md rounded-2xl border-2 transition-all duration-300 cursor-pointer md:translate-y-12 ${
-                activeAgentId === "coach"
-                  ? "border-[var(--orange)] shadow-[4px_4px_0px_var(--orange)] scale-105 z-20"
-                  : "border-white/20 hover:border-white/50 rotate-2 hover:rotate-0"
-              }`}
-              data-cursor-text="COACH"
-            >
-              <div className="relative h-44 sm:h-56 rounded-xl overflow-hidden bg-zinc-800">
-                <img
-                  src="/team/japie.avif"
-                  alt="Japie - Coach"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <img
-                  src="/stickers/fistbump.svg"
-                  alt="Fistbump"
-                  className="absolute bottom-1 right-1 w-12 h-12 drop-shadow-md"
-                />
-              </div>
-              <div className="pt-2 text-center">
-                <div className="font-display font-bold text-sm text-white">Coach</div>
-                <div className="font-mono text-[11px] text-white/60">Interview Simulation</div>
-              </div>
-            </div>
+                  <div className="pt-2 border-t border-current/20 flex items-center justify-between text-[11px] font-mono">
+                    <span className="font-bold underline">
+                      {isActive ? "active" : "inspect →"}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
         {/* ---------------- Interactive Agent Intelligence Dialogue Box ---------------- */}
-        <div className="relative mt-24 p-6 sm:p-8 rounded-3xl bg-white/5 border-2 border-white/20 backdrop-blur-xl shadow-[6px_6px_0px_var(--black)]">
+        <div className="relative mt-20 p-6 sm:p-8 rounded-3xl bg-zinc-950/80 border-2 border-white/20 backdrop-blur-xl shadow-[8px_8px_0px_var(--color-dark)]">
           <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10">
             <div className="flex items-center gap-3">
               <span className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="font-display font-black text-xl text-white">
-                {activeAgent.name.toUpperCase()}
+              <span className="font-display font-black text-2xl text-white">
+                {activeAgentId.toUpperCase()}
               </span>
-              <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-xs font-mono text-[var(--lime)]">
-                {activeAgent.role}
+              <span className="px-3 py-1 rounded-full bg-white/10 text-xs font-mono text-[var(--color-lightgreen)]">
+                {currentData.roleTitle}
+              </span>
+              <span className="hidden md:inline-block px-2.5 py-0.5 rounded-full bg-[var(--color-orange)] text-[var(--color-dark)] text-[10px] font-mono font-bold">
+                {currentData.stats}
               </span>
             </div>
 
@@ -277,7 +357,7 @@ export function MeetAgentsSection() {
                   onClick={() => setActiveAgentId(ag.id)}
                   className={`px-3 py-1 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
                     activeAgentId === ag.id
-                      ? "bg-[var(--orange)] text-[var(--black)] font-bold shadow-sm"
+                      ? "bg-[var(--color-orange)] text-[var(--color-dark)] font-bold shadow-sm"
                       : "bg-white/10 text-white/70 hover:text-white hover:bg-white/15"
                   }`}
                 >
@@ -291,21 +371,27 @@ export function MeetAgentsSection() {
           <div className="mt-6 space-y-4">
             {/* User prompt */}
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-white/20 text-white text-xs font-bold grid place-items-center shrink-0">
-                YOU
+              <div className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center font-mono text-xs font-bold text-white shrink-0 mt-0.5">
+                U
               </div>
-              <div className="p-3.5 rounded-2xl bg-white/10 border border-white/10 text-white text-sm md:text-base font-body">
-                {currentData.prompt}
+              <div className="p-3.5 rounded-2xl rounded-tl-sm bg-white/10 text-white font-mono text-sm leading-relaxed max-w-2xl border border-white/10">
+                "{currentData.prompt}"
               </div>
             </div>
 
             {/* Agent response */}
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-[var(--orange)] text-[var(--black)] text-xs font-display font-black grid place-items-center shrink-0 shadow">
-                {activeAgent.name.charAt(0)}
+              <div className={`w-7 h-7 rounded-full ${currentData.badgeColor} ${currentData.textColor} flex items-center justify-center font-display font-black text-xs shrink-0 mt-0.5 shadow-sm`}>
+                {activeAgentId.charAt(0).toUpperCase()}
               </div>
-              <div className="p-4 rounded-2xl bg-[var(--cream)] text-[var(--black)] border-2 border-[var(--black)] text-sm md:text-base font-body shadow-[4px_4px_0px_var(--orange)] leading-relaxed max-w-2xl">
-                {currentData.reply}
+              <div className="space-y-3 max-w-3xl">
+                <div className="p-4 rounded-2xl rounded-tl-sm bg-white/15 text-white font-mono text-sm leading-relaxed border border-white/20 shadow-inner">
+                  {currentData.reply}
+                </div>
+                <div className="text-xs font-mono text-[var(--color-lightgreen)] italic pl-1 flex items-center gap-2">
+                  <span>✦</span>
+                  <span>{currentData.unhingedQuote}</span>
+                </div>
               </div>
             </div>
           </div>

@@ -49,8 +49,8 @@ export function HeroSection({ onExplore, onMeetAgents }: HeroSectionProps) {
         </div>
 
         {/* Blue Circular Smiley Sticker + Downward Curved Arrow */}
-        <div className="absolute top-8 left-36 md:top-14 md:left-80 z-20 select-none animate-[wiggle_4s_ease-in-out_infinite]">
-          <div className="relative group cursor-pointer" data-hover>
+        <div data-inertia-element className="absolute top-8 left-36 md:top-14 md:left-80 z-20 select-none animate-[wiggle_4s_ease-in-out_infinite]">
+          <div data-inertia-child className="relative group cursor-pointer" data-custom-cursor="click">
             <img
               src="/stickers/smiley.svg"
               alt="Smiley"
@@ -111,11 +111,12 @@ export function HeroSection({ onExplore, onMeetAgents }: HeroSectionProps) {
         </div>
 
         {/* Bottom-Left: Jagged "BAM!" Explosion Sticker + Blue 8-Point Star Doodle */}
-        <div className="absolute bottom-16 left-4 md:bottom-20 md:left-24 z-20 select-none">
+        <div data-inertia-element className="absolute bottom-16 left-4 md:bottom-20 md:left-24 z-20 select-none">
           <div className="relative flex items-center gap-2">
             <div
+              data-inertia-child
+              data-custom-cursor="click"
               className="group cursor-pointer transition-transform duration-300 hover:scale-110 hover:rotate-6"
-              data-hover
             >
               <img
                 src="/stickers/bam.svg"
@@ -267,18 +268,47 @@ export function HeroSection({ onExplore, onMeetAgents }: HeroSectionProps) {
           {/* Bottom Headline: "we make career moves for the new mainstream" */}
           <div className="absolute bottom-8 left-6 md:bottom-14 md:left-14 z-20 max-w-4xl">
             <h2 className="font-display font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-              we make{" "}
-              <span className="font-serif italic font-normal text-white underline decoration-wavy decoration-[var(--orange)] underline-offset-8">
-                career moves
+              we{" "}
+              <span className="relative inline-block">
+                <span>make</span>
+                <img
+                  src="/stickers/smiley.svg"
+                  alt="Smiley"
+                  className="absolute -top-7 -right-7 sm:-top-9 sm:-right-9 w-8 sm:w-12 h-8 sm:h-12 drop-shadow-md -rotate-12 pointer-events-none"
+                />
+              </span>{" "}
+              <span className="font-serif italic font-normal text-white">
+                career intelligence
               </span>
               <br />
-              for the new mainstream.
+              for the new{" "}
+              <span className="relative inline-block">
+                <span>mainstream</span>
+                {/* Hand-drawn underline loop matching Truus */}
+                <svg
+                  viewBox="0 0 320 30"
+                  fill="none"
+                  className="absolute -bottom-3 left-0 w-full text-[var(--color-pink)] overflow-visible pointer-events-none"
+                >
+                  <path
+                    d="M 5 18 C 80 4, 220 2, 310 12 C 280 24, 150 26, 40 22 C 120 18, 250 16, 315 20"
+                    stroke="currentColor"
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <span className="inline-block ml-3 align-middle text-[var(--color-pink)] text-2xl sm:text-4xl animate-pulse">
+                âœ¦
+              </span>
             </h2>
           </div>
 
-          {/* Bottom Right Audio / Interactive Pill */}
+          {/* Bottom Right Audio / Interactive Pill with Custom Mute Cursor */}
           <div className="absolute bottom-8 right-6 md:bottom-14 md:right-14 z-20">
             <button
+              data-custom-cursor="mute"
               onClick={() => setIsPlaying(!isPlaying)}
               className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-[var(--black)]/80 hover:bg-[var(--black)] border border-white/20 text-white text-xs font-mono uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer shadow-lg hover:scale-105"
             >

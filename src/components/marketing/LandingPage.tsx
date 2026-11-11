@@ -1,18 +1,23 @@
 import { MarketingNav } from "./MarketingNav";
 import { HeroSection } from "./HeroSection";
 import { Marquee } from "../common/Marquee";
+import { HorizontalWordsSection } from "./HorizontalWordsSection";
 import { PhilosophySection } from "./PhilosophySection";
 import { MeetAgentsSection } from "./MeetAgentsSection";
 import { CapabilitiesSection } from "./CapabilitiesSection";
 import { BYOASection } from "./BYOASection";
 import { MoreStuffSection } from "./MoreStuffSection";
 import { MarketingFooter } from "./MarketingFooter";
+import { useTruusInteractions } from "../../hooks/useTruusInteractions";
 
 interface LandingPageProps {
   onEnterApp: () => void;
 }
 
 export function LandingPage({ onEnterApp }: LandingPageProps) {
+  // Activate Truus momentum inertia, draw button SVGs, and accordion card physics
+  useTruusInteractions();
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -43,7 +48,10 @@ export function LandingPage({ onEnterApp }: LandingPageProps) {
           textColor="text-[var(--black)]"
         />
 
-        {/* Section 2: Philosophy ("we wanna be where they are" + stacked cards) */}
+        {/* Truus Scrolled Horizontal Words Section */}
+        <HorizontalWordsSection />
+
+        {/* Section 2: Philosophy ("an agency built for the future... from campus to VP") */}
         <PhilosophySection />
 
         {/* Section 3: Meet the Agents ("we are a future-proof collective... not to brag!") */}
