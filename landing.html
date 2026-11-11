@@ -1,0 +1,870 @@
+<!doctype html>
+<html
+  lang="en"
+  class="w-mod-js lenis"
+  style="--vh-in-px: 9.51px"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hey, over here! 👋 - Orbit Career Intelligence Platform</title>
+    <meta
+      name="description"
+      content="A career intelligence platform built for the future. 8 local AI agents working together to uncover hidden jobs, audit proof, write human outreach, and negotiate offers."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Epilogue:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,900&family=Lora:ital,wght@1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Truus Dennis Snellenberg CSS Architecture -->
+    <link href="/css/truus.webflow.shared.00d6fbb8a.css" rel="stylesheet" type="text/css" />
+    <link href="/css/flickity.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/40172.css" rel="stylesheet" type="text/css" />
+
+    <style>
+      /* Local font overrides pointing directly to bundled woff2 fonts */
+      @font-face {
+        font-family: "Epilogue";
+        src: url("/fonts/Epilogue-Black.woff2") format("woff2");
+        font-weight: 800 900;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Epilogue";
+        src: url("/fonts/Epilogue-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Lora";
+        src: url("/fonts/Lora-Italic.woff2") format("woff2");
+        font-weight: 400 700;
+        font-style: italic;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "DM Sans";
+        src: url("/fonts/DMSans-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "DM Sans";
+        src: url("/fonts/DMSans-SemiBold.woff2") format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "DM Sans";
+        src: url("/fonts/DMSans-Bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Navigation action button */
+      .nav-bar__btn-orbit {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5em;
+        background-color: var(--color-orange, #f5693c);
+        color: #ffffff !important;
+        font-family: "Epilogue", sans-serif;
+        font-weight: 800;
+        font-size: 0.9em;
+        padding: 0.6em 1.25em;
+        border-radius: 9999px;
+        text-decoration: none;
+        box-shadow: 0 4px 14px rgba(245, 105, 60, 0.35);
+        transition: transform 0.2s cubic-bezier(0.35, 1.75, 0.6, 1), background-color 0.2s ease;
+      }
+      .nav-bar__btn-orbit:hover {
+        transform: scale(1.06) rotate(-1.5deg);
+        background-color: #e05325;
+      }
+
+      /* Standalone Mode Banner Pill */
+      .orbit-top-pill {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #000000;
+        color: #ffffff;
+        padding: 10px 18px;
+        border-radius: 9999px;
+        font-family: "Epilogue", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        border: 2px solid #e6fab9;
+        transition: all 0.2s ease;
+      }
+      .orbit-top-pill:hover {
+        transform: translateY(-3px) scale(1.04);
+        background: #f5693c;
+        border-color: #ffffff;
+      }
+      .orbit-top-pill svg {
+        width: 16px;
+        height: 16px;
+      }
+    </style>
+  </head>
+  <body
+    data-barba="wrapper"
+    data-scrolling-started="false"
+    data-scrolling-direction="down"
+    data-theme-page="dark"
+    data-theme-nav="dark"
+    data-bg-nav="video"
+    data-transition="not-active"
+    class="body"
+  >
+    <!-- Floating Truus Page Transition & Dennis Snellenberg Custom Cursor -->
+    <div class="floating-elements">
+      <!-- 1. Fullscreen Scribble Page Loader Transition -->
+      <div data-transition-theme="none" class="transition-container" style="pointer-events: none">
+        <div class="transition-screen" style="opacity: 0; visibility: hidden"></div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="100%"
+          viewBox="0 0 3222 3114"
+          fill="none"
+          preserveAspectRatio="none"
+          class="transition-scribble"
+        >
+          <path
+            d="M299.654 453.865C505.574 319.225 711.494 184.585 836.054 109.945C960.614 35.3048 997.574 24.7448 944.014 110.385C890.454 196.025 745.254 378.185 571.454 634.385C397.654 890.585 199.654 1215.3 110.854 1382.58C22.0544 1549.86 48.4544 1549.86 77.8944 1540.62C107.334 1531.38 139.014 1512.9 367.854 1319.9C596.694 1126.9 1021.73 759.945 1255.21 555.065C1488.69 350.185 1517.73 318.505 1527.41 306.145C1537.09 293.785 1526.53 301.705 1346.85 618.625C1167.17 935.545 818.694 1561.22 635.214 1896.74C451.734 2232.26 443.814 2258.66 447.654 2268.3C451.494 2277.94 467.334 2270.02 511.134 2236.9C554.934 2203.78 626.214 2145.7 966.534 1817.46C1306.85 1489.22 1914.05 892.585 2263.81 557.505C2613.57 222.425 2687.49 166.985 2741.41 129.185C2795.33 91.3848 2827.01 72.9048 2843.33 67.3448C2859.65 61.7848 2859.65 69.7048 2849.09 96.2248C2838.53 122.745 2817.41 167.625 2584.77 544.505C2352.13 921.385 1370.37 2165.43 1139.25 2537.83C908.134 2910.23 902.854 2926.07 902.774 2939.51C902.694 2952.95 907.974 2963.51 1255.21 2613.87C1602.45 2264.23 2829.73 1017.54 2903.53 1071.46C2977.33 1125.38 2176.12 2817.04 2128 3037C2079.88 3256.96 2911.24 2018.56 3172 1793"
+            stroke="currentColor"
+            stroke-width="31%"
+            stroke-linecap="round"
+            style="stroke-width: 0%; stroke-dashoffset: 0.001; stroke-dasharray: 0px, 999999px"
+          ></path>
+        </svg>
+        <div class="transition-logo" style="opacity: 0; visibility: hidden">
+          <svg viewBox="0 0 160 40" fill="none" class="transition-logo__svg" style="height: 48px; width: auto">
+            <text x="0" y="32" font-family="Epilogue, sans-serif" font-weight="900" font-size="36" fill="currentColor">ORBIT</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 2. Interactive Dennis Snellenberg Custom Cursor with Tags -->
+      <div
+        data-cursor-type="false"
+        data-cursor-init="true"
+        class="custom-cursor"
+      >
+        <div class="cursor-mute">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 166 170" fill="none" class="cursor-mute__bg-svg">
+            <path d="M149.641 82.9313C147.433 95.9844 149.259 108.779 153.674 121.766C153.923 122.483 154.338 123.751 153.915 124.134L153.874 124.176C153.542 124.518 152.761 124.476 151.824 124.293C148.188 123.617 144.885 122.791 141.249 122.299C130.476 121.34 119.561 122.875 109.693 127.612C101.194 131.449 95.4749 136.262 90.0467 143.81C83.8715 150.858 81.174 157.889 80.4685 167.306C80.2776 170.684 78.7504 170.934 77.2232 167.706C74.1356 161.409 71.546 154.636 67.3462 149.015C63.2211 143.752 58.7972 138.455 53.535 134.393C50.6383 132.241 47.9574 129.789 44.8864 127.879C43.3094 126.887 41.5083 126.303 39.9147 125.385C34.3786 121.54 27.971 119.213 21.5468 117.328C15.1807 115.21 8.54067 114.042 1.83427 113.567C0.489666 113.533 -0.647434 113.425 0.423266 111.957C1.41927 110.689 2.43187 109.488 3.31997 108.128C5.68547 104.575 7.90157 100.839 8.83117 96.5683C9.37897 93.7992 10.2671 91.0718 10.375 88.2443C10.3252 81.6218 8.64857 74.8324 4.74757 69.4277C2.16627 65.8996 3.43617 65.0989 7.43677 65.1656C14.3922 65.1656 21.1318 63.364 27.722 61.2121C34.196 59.2687 40.919 57.659 46.4302 53.547C52.9706 49.0931 59.3118 44.1721 64.3167 38C65.5119 36.5153 66.2672 34.7304 67.313 33.1457C69.0643 30.7269 71.0978 28.4832 72.293 25.6974C73.9364 22.2611 74.7581 18.391 75.7209 14.7044C76.3434 12.1355 77.0655 9.56653 77.3477 6.93087C77.7544 5.36282 76.7252 -0.275484 78.4682 -0.000241284C79.4559 0.216617 80.7175 2.25175 81.4728 3.35272C83.2739 5.99672 85.1165 8.62403 86.7848 11.3598C88.8432 14.9713 92.1549 17.5069 95.1927 20.1842C96.9606 21.7523 98.4878 23.704 100.413 25.1469C102.314 26.5982 104.455 27.6575 106.53 28.8252C112.897 32.9038 120.043 35.1641 127.106 37.6997C129.903 38.784 132.833 39.4429 135.796 39.8432C144.586 41.0526 153.351 42.971 162.232 42.9543C164.257 43.0127 167.735 42.579 164.954 45.7818C156.115 56.8666 151.948 69.5027 149.632 82.9229L149.641 82.9313Z" fill="currentColor"></path>
+          </svg>
+          <div class="mute is--custom-cursor">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 54 54" fill="none" class="mute__mute-svg">
+              <path d="M12.3818 8.50039C12.8934 7.92803 13.7447 7.84041 14.3584 8.26992C14.3696 8.28308 14.3799 8.29711 14.3916 8.30996L14.501 8.41738L52.001 41.9174L52.1201 42.0141C52.1264 42.0186 52.1333 42.0223 52.1396 42.0268C52.6204 42.5885 52.6243 43.4317 52.1182 43.9984C51.6007 44.5775 50.7353 44.6609 50.1201 44.2143L50.001 44.1176L44.999 39.6488C44.2681 40.687 43.4506 41.6601 42.5557 42.5551C41.9699 43.1407 41.0203 43.1408 40.4346 42.5551C39.8493 41.9693 39.8492 41.0197 40.4346 40.434C41.2902 39.5783 42.0647 38.6412 42.7451 37.6361L37.8271 33.2416C37.2776 34.1931 36.6101 35.068 35.8389 35.8393C35.2532 36.4247 34.3035 36.4246 33.7178 35.8393C33.1321 35.2534 33.132 34.3029 33.7178 33.7172C34.452 32.9828 35.0644 32.1286 35.5273 31.1879L29 25.3559V43.4994C28.9999 44.0475 28.7004 44.5517 28.2197 44.8148C27.7389 45.0778 27.1531 45.0583 26.6914 44.7631L14.6846 37.0785C14.6042 37.0272 14.5104 36.9995 14.415 36.9994H8.5C6.56706 36.9994 5.0001 35.4323 5 33.4994V20.4994C5.00017 18.5666 6.56711 16.9994 8.5 16.9994H14.415C14.5105 16.9994 14.6042 16.9718 14.6846 16.9203L17.5225 15.1029L12.501 10.6176L12.3916 10.5102C11.8788 9.94899 11.8646 9.07956 12.3818 8.50039Z" fill="currentColor"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="cursor-drag">
+          <div data-theme="Pink" class="tag"><h4 class="tag__h4">Drag</h4></div>
+        </div>
+        <div class="cursor-click">
+          <div data-theme="Pink" class="tag"><h4 class="tag__h4">Click</h4></div>
+        </div>
+        <div class="cursor-home">
+          <div data-theme="Pink" class="tag"><h4 class="tag__h4">to Home</h4></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Webflow Barba Container -->
+    <main id="main" data-barba-namespace="home" data-barba="container" class="main">
+      <!-- Fixed Navigation Bar -->
+      <header class="header">
+        <div class="nav-bar">
+          <div class="nav-bar__left">
+            <a href="/" data-barba-prevent class="nav-bar__logo-link w-inline-block" style="text-decoration: none;">
+              <span style="font-family: 'Epilogue', sans-serif; font-weight: 900; font-size: 1.75em; letter-spacing: -0.05em; color: currentColor;">orbit.</span>
+            </a>
+          </div>
+          <div class="nav-bar__center">
+            <nav class="nav-bar__links" style="display: flex; gap: 1.5em; align-items: center;">
+              <a href="#philosophy" data-barba-prevent class="nav-bar__link" style="text-decoration: none; font-weight: 700; font-size: 0.9em;">philosophy</a>
+              <a href="#agents" data-barba-prevent class="nav-bar__link" style="text-decoration: none; font-weight: 700; font-size: 0.9em;">the agents</a>
+              <a href="#capabilities" data-barba-prevent class="nav-bar__link" style="text-decoration: none; font-weight: 700; font-size: 0.9em;">capabilities</a>
+              <a href="#how-it-works" data-barba-prevent class="nav-bar__link" style="text-decoration: none; font-weight: 700; font-size: 0.9em;">how it works</a>
+            </nav>
+          </div>
+          <div class="nav-bar__right">
+            <a href="/#dashboard" data-barba-prevent class="nav-bar__btn-orbit" onclick="navigateToOrbitApp('dashboard'); return false;">
+              launch platform 🚀
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <div data-scroll-container="" class="main-wrap">
+        <!-- Section 1: Hero ("hey, over here! 👋 we build career intelligence for the new generation") -->
+        <section
+          data-theme-section="dark"
+          data-bg-section="video"
+          class="home-header"
+        >
+          <div data-clippath-transition="" class="home-header__video">
+            <div class="vimeo-player is--home-header">
+              <div class="vimeo-player__before" style="padding-top: 0%"></div>
+              <img
+                src="/showcase/banner.avif"
+                alt="Orbit Career Platform"
+                class="cover-image"
+                style="width: 100%; height: 100%; object-fit: cover;"
+              />
+              <div class="home-header__video-fade"></div>
+              <div
+                data-custom-cursor="mute"
+                data-hover=""
+                class="vimeo-player__overlay-mute"
+              ></div>
+            </div>
+          </div>
+          <div class="home-header__content">
+            <div class="container is--large">
+              <div class="home-header__row-title">
+                <div class="home-header__col-title">
+                  <h1 class="display" style="text-transform: lowercase;">
+                    hey, over here! 👋
+                  </h1>
+                  <p style="font-family: 'DM Sans', sans-serif; font-size: 1.25em; max-width: 650px; margin-top: 1em; opacity: 0.85;">
+                    We make career intelligence for the new generation. 8 autonomous local agents that scout unlisted openings, audit verifiable engineering proof, and spar on salary.
+                  </p>
+                  <div style="margin-top: 2em; display: flex; gap: 1em; align-items: center; flex-wrap: wrap;">
+                    <a href="/#dashboard" data-barba-prevent class="tag" data-theme="Orange" style="padding: 1em 2em; text-decoration: none; display: inline-flex;" onclick="navigateToOrbitApp('dashboard'); return false;">
+                      <h4 class="tag__h4" style="font-size: 1.1em; color: white;">enter career os →</h4>
+                    </a>
+                    <a href="#agents" data-barba-prevent class="tag" data-theme="Lime" style="padding: 1em 2em; text-decoration: none; display: inline-flex;">
+                      <h4 class="tag__h4" style="font-size: 1.1em; color: black;">meet the 8 agents ↓</h4>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Editorial Marquee Banner -->
+        <div class="marquee" style="background-color: var(--color-lightgreen, #e6fab9); color: #000000; padding: 1em 0; overflow: hidden; border-top: 2px solid #000; border-bottom: 2px solid #000;">
+          <div class="marquee__wrap" style="display: flex; gap: 3em; white-space: nowrap; font-family: 'Epilogue', sans-serif; font-weight: 900; font-size: 1.25em; letter-spacing: 0.05em; text-transform: uppercase;">
+            <span>★ YOUR CAREER ★ YOUR INTELLIGENCE ★ YOUR NEXT MOVE ★ 8 SPECIALIZED AGENTS ★ 0% CORPORATE SLOP ★ EVIDENCE BEFORE CONFIDENCE ★ 100% PRIVATE BYOA ★ INDIA-FIRST SIGNALS</span>
+            <span>★ YOUR CAREER ★ YOUR INTELLIGENCE ★ YOUR NEXT MOVE ★ 8 SPECIALIZED AGENTS ★ 0% CORPORATE SLOP ★ EVIDENCE BEFORE CONFIDENCE ★ 100% PRIVATE BYOA ★ INDIA-FIRST SIGNALS</span>
+          </div>
+        </div>
+
+        <!-- Section 3: Horizontal Scrolled Words ("WE BUILD WHERE THE REAL CAREERS ARE") -->
+        <section data-bg-section="light" data-theme-section="light" class="horizontal-words">
+          <div class="horizontal-words__content">
+            <div class="horizontal-words__relative">
+              <h2 class="display horizontal-words__h2" aria-label="We build where the real careers are">
+                We build where the real careers are
+              </h2>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Philosophy Section (.future) with DrawSVG underline & 4-card inertia stack -->
+        <section
+          id="philosophy"
+          data-inertia-init=""
+          data-theme-section="light"
+          data-bg-section="light"
+          class="future"
+        >
+          <div class="container">
+            <div class="future__row-title">
+              <div class="future__col-title">
+                <h2 class="h1">A career platform built for the future. <em>from campus to VP.</em></h2>
+                <div data-scroll-animation="draw-sticker" class="future__line">
+                  <div class="future__title-line">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="100%"
+                      viewBox="0 0 634 28"
+                      fill="none"
+                      data-scroll-animation-target="draw"
+                    >
+                      <path
+                        d="M2 26C41.0237 23.1556 79.9927 19.9419 118.634 15.5521C169.106 9.98633 227.314 2.42393 275.206 2C280.46 2.57436 264.768 4.99488 262.462 5.55556C257.837 6.43078 252.529 7.47009 247.317 8.59146C239.594 10.3556 212.496 15.8393 226.932 19.8051C239.594 22.6359 263.663 21.9521 280.978 21.3504C314.817 19.9829 349.311 16.7419 383.204 14.7863C465.931 9.5077 549.191 10.547 632 14.1436"
+                        stroke="currentColor"
+                        stroke-width="3.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="future__love-sticker">
+                    <img
+                      src="/stickers/hands-love.svg"
+                      alt="Love sticker"
+                      data-scroll-animation-target="sticker"
+                      style="width: 100%; height: auto;"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Overlapping Cards Stack with GSAP Velocity Inertia -->
+            <div class="future__row-cards">
+              <!-- Large organic blue background blob -->
+              <div class="future__bg-shape">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="100%"
+                  viewBox="0 0 527 526"
+                  fill="none"
+                >
+                  <path
+                    d="M526.774 229.982V230.166C525.509 236.241 524.719 242.552 521.399 248.101C517.447 254.229 512.335 259.251 507.197 264.353C500.847 270.533 493.127 274.951 485.644 279.475C481.006 281.894 476.053 283.787 471.389 286.233C459.269 292.729 445.963 296.069 433.21 300.829C427.756 303.169 421.748 303.511 416.189 305.536C409.022 307.85 401.512 308.955 394.108 310.348C388.786 311.348 383.569 312.663 378.22 313.373C373.135 314.004 368.155 315.345 363.043 315.739C357.905 315.739 352.899 316.765 347.761 317.291C344.889 317.554 341.964 317.659 339.118 317.975C337.959 318.106 336.931 318.369 336.457 318.79C335.456 319.5 336.879 320.973 337.643 321.604C340.568 323.997 343.334 326.653 346.127 329.23C356.561 338.408 365.046 349.48 372.634 361.077C376.613 367.31 380.776 373.49 383.015 380.669C386.098 387.664 389.234 394.686 391.104 402.181C392.343 407.966 393.107 413.831 393.502 419.748C393.792 424.508 392.554 429.215 392.317 433.922C392.185 435.947 392.132 438.025 392 440.05C391.869 442.943 391.078 445.73 390.103 448.439C388.601 453.567 387.574 458.984 385.123 463.823C377.798 480.181 367.233 495.065 352.293 505.058C344.625 511.685 335.614 516.156 326.26 519.654C319.594 522.152 312.585 524.282 305.471 524.887C301.203 525.124 297.066 525.387 292.929 525.466C289.451 525.597 285.894 526.228 282.416 525.913C277.357 525.597 272.377 523.888 267.318 523.257C264.472 522.888 261.627 522.415 258.886 521.521C251.72 519.049 244.474 516.445 237.518 513.474C234.856 512.133 232.511 510.081 229.771 508.635C224.738 505.874 219.311 503.77 214.989 499.904C204.529 490.752 194.964 480.522 186.454 469.451C181.342 462.324 177.469 454.277 174.57 445.993C173.411 442.259 172.094 438.603 170.671 435.001C166.376 423.167 165.401 410.622 164.163 398.236C163.767 389.847 162.661 381.405 162.951 373.043C163.056 369.887 163.293 366.731 163.399 363.549C163.767 360.341 162.845 356.107 158.946 358.789C157.417 359.946 156.311 361.787 154.862 363.26C152.938 365.259 150.672 366.836 148.591 368.677C139.737 376.54 130.41 383.93 121.083 391.162C116.919 394.239 112.177 396.606 107.987 399.656C104.852 401.786 102.138 404.521 98.8178 406.388C93.3373 409.045 88.8843 413.436 83.3774 416.092C80.1892 417.697 77.5807 420.3 74.4979 422.115C70.9145 424.166 67.0939 425.796 63.247 427.322C57.4503 429.636 51.2847 430.609 45.2508 432.003C42.5632 432.686 39.6912 433.028 37.0036 432.082C24.7778 428.426 17.0576 417.065 20.5093 404.337C21.4579 399.84 22.0112 395.159 23.6712 390.873C25.3311 386.402 27.7025 382.221 29.8895 378.013C33.8154 370.387 37.5833 362.471 43.907 356.422C45.6197 354.792 47.306 353.135 48.5707 351.084C51.1266 346.508 54.5782 342.59 58.3198 338.961C62.5356 334.332 67.4628 330.545 72.3373 326.706C75.0776 324.523 77.1328 321.63 79.7677 319.342C85.7752 314.635 92.257 310.585 98.2645 305.904C99.74 304.8 105.695 300.46 100.847 300.013C98.9232 300.013 97.0524 300.802 94.9972 300.96C86.6447 301.065 78.3185 301.67 69.9396 301.249C64.2219 301.092 58.4515 300.46 52.8392 299.777C43.7489 299.33 34.6586 298.988 26.227 294.964C20.4566 292.098 14.0539 290.599 8.70507 286.891C2.80295 282.736 -1.72903 274.925 0.642356 267.693C2.90835 262.539 6.04385 257.595 10.7339 254.544C14.4491 252.467 18.4278 250.889 21.9585 248.469C28.3876 244.788 35.6598 243.368 42.4578 240.685C49.8882 238.161 57.8455 237.503 65.5657 236.188C69.0964 235.741 72.469 234.531 75.9471 234.032C83.1403 233.348 90.4126 233.742 97.5794 232.98C100.451 232.717 103.323 232.428 106.222 232.454C116.076 232.796 125.957 233.585 135.653 234.321C137.445 234.452 139.289 234.637 141.108 234.742C143.558 234.873 143.874 233.9 142.557 231.98C138.367 226.011 133.545 220.225 129.119 214.282C128.091 212.862 127.195 211.363 126.326 209.838C122.637 203.079 117.578 197.188 113.573 190.64C108.251 181.541 103.692 172.021 98.7388 162.712C95.8667 156.137 92.5995 149.615 89.991 142.988C87.1453 135.046 85.3536 126.71 83.6409 118.347C82.3762 112.588 82.6397 106.592 83.1666 100.806C83.3247 96.9142 84.8793 93.2325 88.2783 90.9446C94.1277 86.7632 100.583 89.3667 106.011 92.8644C113.125 96.9931 119.343 102.647 124.929 108.669C130.515 115.007 136.707 120.504 142.135 126.894C145.824 131.496 149.012 136.519 152.648 141.174C159.156 150.457 165.322 159.845 171.224 169.365C172.805 172.1 173.675 175.151 175.308 177.886C176.942 180.726 178.971 183.434 180.657 186.38C182.317 189.378 183.266 188.457 183.819 185.617C184.451 182.514 184.688 179.174 185.347 175.966C186.322 170.785 187.666 165.71 188.799 160.555C191.355 148.458 193.094 136.098 197.388 124.422C198.68 120.556 200.155 116.743 201.42 112.877C202.553 109.353 203.396 105.698 204.845 102.332C205.794 100.096 206.531 97.8084 207.19 95.4678C209.483 87.5259 213.409 80.215 216.439 72.5623C218.467 67.1187 221.84 62.3587 224.897 57.4936C225.792 55.8894 226.557 54.1538 227.347 52.497C229.982 46.9481 233.697 42.1093 236.991 36.9812C238.413 34.7722 239.889 32.5895 241.549 30.5645C245.317 25.8835 249.691 21.7547 253.801 17.3892C255.487 15.6273 257.226 13.9442 259.176 12.4715C263.339 9.26318 268.109 6.94896 272.746 4.34546C276.988 1.68937 281.836 0.00629909 286.869 0.00629909C293.403 -0.0988927 300.386 1.08452 305.155 5.73925C309.819 10.2362 312.243 17.1263 314.245 23.28C316.3 29.9071 317.223 36.9286 317.012 43.8713C316.696 53.2596 316.538 62.5954 314.614 71.7734C312.717 82.0033 311.926 92.6277 308.765 102.542C306.262 109.879 304.733 117.479 302.863 124.974C301.545 129.944 299.885 134.81 298.41 139.727C296.908 144.645 295.88 149.694 294.167 154.559C291.164 163.027 289.108 171.837 285.709 180.147C283.944 184.592 282.864 188.878 281.863 193.664C281.573 194.822 281.441 196.61 282.258 196.741C284.129 196.873 286.842 194.953 288.792 194.374C296.881 190.982 305.129 188.01 313.455 185.302C321.07 182.672 328.526 179.569 336.431 177.965C340.014 177.202 343.624 176.466 347.181 175.598C354.691 173.678 362.042 171.022 369.788 170.18C372.845 169.812 375.849 169.049 378.905 168.655C383.279 168.208 387.706 168.076 392.132 167.735C399.22 167.051 406.229 166.052 413.369 166.446C424.725 166.814 436.266 165.736 447.412 168.629C458.557 171.495 470.098 173.205 480.796 177.623C485.828 179.674 490.308 182.882 495.287 185.091C503.798 188.563 510.095 195.716 516.419 202.159C518.132 203.999 519.897 205.814 521.267 207.944C523.902 212.047 524.851 216.885 526.036 221.645C526.722 224.354 527.275 227.168 526.853 229.956L526.774 229.982Z"
+                    fill="#82A0FF"
+                  ></path>
+                </svg>
+              </div>
+
+              <!-- Card 1: Scout -->
+              <div data-inertia-element="" class="future__cards-item">
+                <div data-inertia-child="" class="future-image">
+                  <div class="future-image__before"></div>
+                  <img src="/showcase/showcase1.avif" alt="Scout - Tech Discovery" class="cover-image" />
+                </div>
+              </div>
+
+              <!-- Flying Tag 1 -->
+              <div data-inertia-element="" class="future__flying-tag">
+                <div data-inertia-child="" class="flying-tag__wrap">
+                  <div data-theme="Pink" class="tag">
+                    <h4 class="tag__h4">careers just wanna have fun!</h4>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2: Lens -->
+              <div data-inertia-element="" class="future__cards-item is--2">
+                <div data-inertia-child="" class="future-image">
+                  <div class="future-image__before"></div>
+                  <img src="/showcase/showcase2.avif" alt="Lens - Evidence Interrogation" class="cover-image" />
+                </div>
+              </div>
+
+              <!-- Flying Tag 2 -->
+              <div data-inertia-element="" class="future__flying-tag is--2">
+                <div data-inertia-child="" class="flying-tag__wrap">
+                  <div data-theme="Orange" class="tag">
+                    <h4 class="tag__h4">evidence before confidence</h4>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3: Draft -->
+              <div data-inertia-element="" class="future__cards-item is--3">
+                <div data-inertia-child="" class="future-image">
+                  <div class="future-image__before"></div>
+                  <img src="/showcase/showcase3.avif" alt="Draft - Anti-Slop Ghostwriter" class="cover-image" />
+                </div>
+              </div>
+
+              <!-- Card 4: Coach -->
+              <div data-inertia-element="" class="future__cards-item is--4">
+                <div data-inertia-child="" class="future-image">
+                  <div class="future-image__before"></div>
+                  <img src="/showcase/showcase4.avif" alt="Coach - CTC Poker & Sparring" class="cover-image" />
+                </div>
+              </div>
+
+              <!-- Flying Tag 3 -->
+              <div data-inertia-element="" class="future__flying-tag is--3">
+                <div data-inertia-child="" class="flying-tag__wrap">
+                  <div data-theme="Pink" class="tag">
+                    <h4 class="tag__h4">zero corporate slop</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="future__row-text">
+              <p class="future__text-p">
+                To win the modern career game you need agents working the private signals. We are a true 360° career intelligence swarm, working the whole spectrum from unlisted ghost-busting to verified GitHub proof points and high-stakes CTC poker.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Showcase / How It Works Slider (.flick) with Drag & Throw inertia -->
+        <section
+          id="how-it-works"
+          data-bg-section="dark"
+          data-theme-section="dark"
+          class="flick"
+        >
+          <div class="container">
+            <div class="flick__row-slider">
+              <div data-flick-drag-status="grab" data-flick-cards-init="" class="flick-group">
+                <div data-custom-cursor="drag" class="flick-group__top">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 80 109" fill="none" data-scroll-animation="draw" class="flick-group__blob-scribble-svg">
+                    <path d="M11.1056 107.429C11.1056 107.429 41.3921 75.9563 1.85536 45.3846C39.6893 67.1983 37.5729 21.5813 34.6647 13.925C40.0573 22.0799 72.2872 32.0642 78.2717 2.44878" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 449 458" fill="none" class="flick-group__blob-back-svg">
+                    <path d="M404.776 223.259C398.804 258.396 403.743 292.836 415.688 327.792C416.361 329.723 417.484 333.136 416.339 334.169L416.226 334.281C415.328 335.201 413.218 335.089 410.681 334.595C400.847 332.777 391.912 330.554 382.078 329.229C352.936 326.647 323.413 330.778 296.718 343.531C273.728 353.858 258.259 366.813 243.576 387.131C226.872 406.103 219.576 425.029 217.667 450.376C217.151 459.469 213.02 460.143 208.889 451.454C200.537 434.503 193.532 416.273 182.172 401.141C171.013 386.974 159.047 372.717 144.813 361.784C136.977 355.991 129.726 349.391 121.419 344.249C117.153 341.578 112.281 340.006 107.97 337.536C92.9953 327.186 75.6629 320.922 58.2856 315.848C41.0655 310.146 23.1044 307.003 4.96379 305.723C1.32668 305.633 -1.74915 305.341 1.14707 301.39C3.84122 297.977 6.58028 294.744 8.98257 291.085C15.3812 281.52 21.3757 271.462 23.8902 259.967C25.372 252.513 27.7743 245.172 28.0662 237.561C27.9315 219.734 23.3963 201.459 12.8442 186.911C5.86184 177.414 9.29689 175.258 20.1184 175.438C38.9326 175.438 57.163 170.589 74.9893 164.796C92.5014 159.565 110.687 155.232 125.595 144.163C143.286 132.174 160.439 118.928 173.977 102.314C177.21 98.3179 179.253 93.5134 182.082 89.2476C186.819 82.7367 192.32 76.6973 195.553 69.1986C199.998 59.9487 202.221 49.5313 204.825 39.6078C206.509 32.6928 208.462 25.7778 209.226 18.6832C210.326 14.4624 207.542 -0.71468 212.257 0.0262124C214.928 0.609946 218.341 6.08806 220.384 9.05163C225.256 16.1687 230.24 23.2408 234.753 30.6049C240.321 40.3263 249.279 47.1515 257.496 54.3583C262.278 58.5792 266.409 63.8328 271.618 67.7168C276.759 71.6233 282.551 74.4747 288.164 77.6179C305.384 88.5965 324.715 94.6808 343.821 101.506C351.387 104.425 359.312 106.198 367.328 107.276C391.103 110.531 414.812 115.695 438.835 115.65C444.313 115.807 453.72 114.64 446.199 123.261C422.288 153.099 411.018 187.113 404.754 223.237L404.776 223.259Z" fill="#E6FAB9"></path>
+                  </svg>
+                  <div class="relative-object"><div class="relative-object__before"></div></div>
+
+                  <!-- 7 Items for Flick Cards physics -->
+                  <div data-flick-cards-collection="" class="flick-group__collection w-dyn-list">
+                    <div data-flick-cards-list="" role="list" class="flick-group__list w-dyn-items">
+                      <!-- Flick Item 1: Scout -->
+                      <div data-flick-cards-item-status="active" data-flick-cards-item="" role="listitem" class="flick-group__item w-dyn-item">
+                        <div data-theme-tag="Orange" class="flick-card">
+                          <div class="flick-card__before"></div>
+                          <div class="flick-card__media">
+                            <img src="/showcase/showcase1.avif" alt="Ghost-Job Incinerator" class="cover-image" />
+                          </div>
+                          <div class="flick-card__content">
+                            <div class="tag__wrap"><div data-theme="Orange" class="tag"><h4 class="tag__h4">SCOUT · DISCOVERY</h4></div></div>
+                            <h3 class="flick-card__h3">ghost-job incinerator</h3>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Flick Item 2: Lens -->
+                      <div data-flick-cards-item-status="not-active" data-flick-cards-item="" role="listitem" class="flick-group__item w-dyn-item">
+                        <div data-theme-tag="Blue" class="flick-card">
+                          <div class="flick-card__before"></div>
+                          <div class="flick-card__media">
+                            <img src="/showcase/showcase2.avif" alt="Brutal Resume Roaster" class="cover-image" />
+                          </div>
+                          <div class="flick-card__content">
+                            <div class="tag__wrap"><div data-theme="Blue" class="tag"><h4 class="tag__h4">LENS · EVIDENCE</h4></div></div>
+                            <h3 class="flick-card__h3">brutal proof auditor</h3>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Flick Item 3: Draft -->
+                      <div data-flick-cards-item-status="not-active" data-flick-cards-item="" role="listitem" class="flick-group__item w-dyn-item">
+                        <div data-theme-tag="Lime" class="flick-card">
+                          <div class="flick-card__before"></div>
+                          <div class="flick-card__media">
+                            <img src="/showcase/showcase3.avif" alt="Tailored Outreach" class="cover-image" />
+                          </div>
+                          <div class="flick-card__content">
+                            <div class="tag__wrap"><div data-theme="Lime" class="tag"><h4 class="tag__h4">DRAFT · OUTREACH</h4></div></div>
+                            <h3 class="flick-card__h3">human cold outreach</h3>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Flick Item 4: Coach -->
+                      <div data-flick-cards-item-status="not-active" data-flick-cards-item="" role="listitem" class="flick-group__item w-dyn-item">
+                        <div data-theme-tag="Pink" class="flick-card">
+                          <div class="flick-card__before"></div>
+                          <div class="flick-card__media">
+                            <img src="/showcase/showcase4.avif" alt="CTC Poker Simulator" class="cover-image" />
+                          </div>
+                          <div class="flick-card__content">
+                            <div class="tag__wrap"><div data-theme="Pink" class="tag"><h4 class="tag__h4">COACH · NEGOTIATION</h4></div></div>
+                            <h3 class="flick-card__h3">ctc poker & sparring</h3>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Flick Item 5: Track -->
+                      <div data-flick-cards-item-status="not-active" data-flick-cards-item="" role="listitem" class="flick-group__item w-dyn-item">
+                        <div data-theme-tag="Orange" class="flick-card">
+                          <div class="flick-card__before"></div>
+                          <div class="flick-card__media">
+                            <img src="/showcase/banner.avif" alt="Application Autopilot" class="cover-image" />
+                          </div>
+                          <div class="flick-card__content">
+                            <div class="tag__wrap"><div data-theme="Orange" class="tag"><h4 class="tag__h4">TRACK · AUTOPILOT</h4></div></div>
+                            <h3 class="flick-card__h3">5-phase private pipeline</h3>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Flick Item 6: Signal -->
+                      <div data-flick-cards-item-status="not-active" data-flick-cards-item="" role="listitem" class="flick-group__item w-dyn-item">
+                        <div data-theme-tag="Lime" class="flick-card">
+                          <div class="flick-card__before"></div>
+                          <div class="flick-card__media">
+                            <img src="/showcase/showcase1.avif" alt="Stealth Signals" class="cover-image" />
+                          </div>
+                          <div class="flick-card__content">
+                            <div class="tag__wrap"><div data-theme="Lime" class="tag"><h4 class="tag__h4">SIGNAL · RADAR</h4></div></div>
+                            <h3 class="flick-card__h3">stealth startup backdoors</h3>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Flick Item 7: Sentinel -->
+                      <div data-flick-cards-item-status="not-active" data-flick-cards-item="" role="listitem" class="flick-group__item w-dyn-item">
+                        <div data-theme-tag="Blue" class="flick-card">
+                          <div class="flick-card__before"></div>
+                          <div class="flick-card__media">
+                            <img src="/showcase/showcase2.avif" alt="Sentinel Guardian" class="cover-image" />
+                          </div>
+                          <div class="flick-card__content">
+                            <div class="tag__wrap"><div data-theme="Blue" class="tag"><h4 class="tag__h4">SENTINEL · GUARDIAN</h4></div></div>
+                            <h3 class="flick-card__h3">equity & contract shield</h3>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: Meet the Agents (.team) -->
+        <section
+          id="agents"
+          data-bg-section="dark"
+          data-theme-section="dark"
+          class="team"
+        >
+          <div class="container is--large">
+            <div class="team__row-text">
+              <div class="team__col-text">
+                <h2 class="is--text-balance">
+                  <span>We are a </span>
+                  <em class="is--relative">
+                    <span>young, </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 201 86" fill="none" data-scroll-animation="draw" class="team__h2-circle-svg">
+                      <path d="M94.2928 1.00027C123.974 0.963816 154.146 4.60865 181.273 16.5546C189.974 20.3907 199.369 26.6143 199.971 36.0452C200.401 42.8702 195.929 49.03 190.946 53.75C180.208 63.9191 166.386 70.3066 152.306 74.9538C125.258 83.8745 96.2711 86.9179 67.9394 83.8289C50.4851 81.9245 33.011 77.6054 17.9651 68.6209C9.40333 63.509 1.07316 55.618 1.00038 45.7041C0.960683 39.7721 4.01088 34.1226 8.27852 29.9767C12.5461 25.8307 17.9452 23.015 23.4369 20.6915C48.2553 10.2126 75.8527 8.8093 102.795 7.54272" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </em>
+                  <span>future-proof team of </span>
+                  <span data-count-display="team">8</span>
+                  <span> specialized career agents </span>
+                  <em class="is--relative is--inline-block">
+                    <span>wunderkinder.</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 403 17" fill="none" data-scroll-animation="draw" class="team__h2-line-svg">
+                      <path d="M1 16C25.8389 14.2222 50.643 12.2137 75.2387 9.47009C107.364 5.99145 144.414 1.26496 174.898 1C178.242 1.35897 168.254 2.8718 166.786 3.22223C163.842 3.76924 160.464 4.41881 157.146 5.11966C152.23 6.22223 134.982 9.64957 144.171 12.1282C152.23 13.8974 167.551 13.4701 178.572 13.094C200.11 12.2393 222.066 10.2137 243.639 8.99146C296.296 5.69231 349.291 6.34188 402 8.58975" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </em>
+                  <span> not to brag!</span>
+                </h2>
+              </div>
+            </div>
+
+            <!-- Team Visual Grid with Organic Blobs and Cycling Avatars -->
+            <div data-team-grid-init="" class="team__grid">
+              <div class="team__grid-before"></div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 436 511" fill="none" class="team-grid__blob-1">
+                <path d="M436 199.141V199.315C435.019 225.786 426.015 251.582 410.908 273.329C402.123 287.217 392.574 300.975 380.039 311.75C374.873 318.564 368.442 324.05 361.422 328.926C357.302 331.473 353.487 334.346 349.476 337.046C344.244 339.985 338.772 342.597 333.213 344.861C325.605 347.887 316.994 347.995 309.058 349.432C308.208 349.606 307.14 349.846 306.595 350.434C305.636 351.37 306.072 352.893 306.464 354.047C307.816 357.748 309.146 361.361 310.606 364.844C314.312 372.616 316.492 380.866 317.43 389.465C319.152 403.985 316.187 418.439 310.911 431.892C304.459 447.348 292.316 459.669 279.628 470.227C263.845 481.177 246.907 490.537 228.922 497.242C222.294 500.246 215.318 502.336 208.233 503.903C204.048 505.471 199.993 506.864 195.524 507.277C186.019 508.388 176.754 511.152 167.053 511C154.562 511.043 141.765 509.367 130.298 504.186C127.661 503.163 125.306 501.618 123.279 499.658C119.268 495.936 114.668 492.671 111.725 487.947C104.465 475.626 103.572 460.148 106.166 446.412C107.67 438.271 108.302 429.846 110.94 421.922C113.73 414.499 116.87 407.272 119.769 399.849C121.535 395.8 118.374 396.453 115.823 397.476C105.861 401.046 95.9416 405.073 85.4994 406.88C76.5614 408.926 67.3836 407.903 58.4674 406.88C54.2382 406.662 49.9872 406.118 45.976 404.812C34.9234 401.416 25.2442 394.145 17.2654 385.917C9.91877 376.317 4.97017 365.149 2.63757 353.329C-0.654231 342.074 -0.458031 330.014 0.849969 318.433C0.762769 290.439 16.0664 256.284 34.1386 235.103C39.8502 226.656 47.8072 219.864 56.1566 214.096C62.4568 210.852 68.3864 206.586 75.515 204.975C84.9326 203.494 94.5464 202.188 104.008 203.429C116.325 205.932 128.642 209.677 139.672 215.75C152.36 224.697 145.188 209.524 143.248 203.581C138.277 189.932 135.465 175.63 131.715 161.611C129.819 152.773 128.816 143.783 128.009 134.792C126.767 128.37 126.331 121.883 125.917 115.374C125.306 102.727 127.312 90.1662 128.227 77.6274C131.04 65.1974 134.266 52.898 139.869 41.2953C154.104 10.9279 189.093 -21.1593 214.446 18.3075C221.488 32 226.872 47.0422 229.27 62.2804C229.728 68.7239 231.254 75.0586 231.843 81.5022C232.017 86.9879 231.93 92.4736 232.235 97.9594C232.322 109.344 231.974 120.795 231.93 132.202C232.039 134.117 228.595 150.183 233.805 142.607C241.435 129.35 246.798 114.721 255.932 102.313C261.077 95.456 266.527 88.7512 272.325 82.4382C275.617 79.5865 278.647 77.3879 281.503 73.992C292.621 66.1552 304.764 56.4899 319.239 60.8219C343.197 70.7702 308.644 125.715 300.469 140.321C297.548 145.546 294.561 150.814 290.921 155.581C288.654 158.716 290.376 158.672 292.861 157.17C304.371 150.509 316.536 144.653 329.485 141.366C349.476 133.53 371.755 131.331 392.879 135.315C401.599 138.362 409.949 142.498 417.143 148.376C422.571 152.49 425.47 158.564 428.37 164.55C431.378 168.686 432.403 173.671 433.427 178.678C434.757 185.339 436.022 192.458 435.891 199.162L436 199.141Z" fill="#2D7864"></path>
+              </svg>
+
+              <!-- Card 1: Orbit Swarm Orchestrator -->
+              <div class="team-card__wrap">
+                <div class="team-card">
+                  <div class="before__125"></div>
+                  <div class="team-card__target">
+                    <img src="/team/ferry.avif" alt="Orbit - Orchestrator" class="cover-image" />
+                  </div>
+                  <div class="team-card__content">
+                    <div class="tag__wrap"><div data-theme="Lime" class="tag"><h4 class="tag__h4">ORBIT-01</h4></div></div>
+                    <h3 class="team-card__h3">swarm orchestrator</h3>
+                    <p style="font-size: 0.85em; opacity: 0.8; margin-top: 0.5em;">Runs your local career intelligence while you sleep. Zero data sold.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2: Scout Ghost-Job Slayer -->
+              <div class="team-card__wrap">
+                <div class="team-card">
+                  <div class="before__125"></div>
+                  <div class="team-card__target">
+                    <img src="/team/destiny.avif" alt="Scout - Job Hunter" class="cover-image" />
+                  </div>
+                  <div class="team-card__content">
+                    <div class="tag__wrap"><div data-theme="Orange" class="tag"><h4 class="tag__h4">SCOUT-02</h4></div></div>
+                    <h3 class="team-card__h3">ghost-job slayer</h3>
+                    <p style="font-size: 0.85em; opacity: 0.8; margin-top: 0.5em;">Throws zombie ATS postings directly into the sun. 86% rejection rate.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3: Lens Evidence Interrogator -->
+              <div class="team-card__wrap">
+                <div class="team-card">
+                  <div class="before__125"></div>
+                  <div class="team-card__target">
+                    <img src="/team/kimmi.avif" alt="Lens - Evidence Interrogator" class="cover-image" />
+                  </div>
+                  <div class="team-card__content">
+                    <div class="tag__wrap"><div data-theme="Pink" class="tag"><h4 class="tag__h4">LENS-03</h4></div></div>
+                    <h3 class="team-card__h3">evidence interrogator</h3>
+                    <p style="font-size: 0.85em; opacity: 0.8; margin-top: 0.5em;">Recruiters spend 6s on your PDF. Make them choke on their matcha.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 4: Coach CTC Poker & Sparring -->
+              <div class="team-card__wrap">
+                <div class="team-card">
+                  <div class="before__125"></div>
+                  <div class="team-card__target">
+                    <img src="/team/kevin.avif" alt="Coach - Negotiation Master" class="cover-image" />
+                  </div>
+                  <div class="team-card__content">
+                    <div class="tag__wrap"><div data-theme="Blue" class="tag"><h4 class="tag__h4">COACH-04</h4></div></div>
+                    <h3 class="team-card__h3">ctc poker & sparring</h3>
+                    <p style="font-size: 0.85em; opacity: 0.8; margin-top: 0.5em;">Slaps your hand away when you're about to lowball yourself in an offer call.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 7: Capabilities Section (.services) with 5 Fan-out Accordion Cards -->
+        <section
+          id="capabilities"
+          data-bg-section="light"
+          data-theme-section="light"
+          class="services"
+        >
+          <div class="container is--large">
+            <div class="services__row-title">
+              <div class="services__col-title">
+                <h2>call us if you <em>need:</em></h2>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="100%"
+                  viewBox="0 0 159 17"
+                  fill="none"
+                  data-scroll-animation="draw-stagger"
+                  class="services__line-svg"
+                >
+                  <path d="M1 12.1515C53.0771 5.7187 105.529 2.30552 158 1.93652" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M30.2672 15.9461C64.1899 12.8158 98.2663 11.3583 132.33 11.5735" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 5 Accordion Fan-out Cards driven by initMWG25() in 40171.js -->
+            <div class="services__row-cards">
+              <!-- Card 1: Scout -->
+              <div data-offset-rot="4" data-offset-x="0" data-offset-y="-5.4" class="services-card__wrap is--1">
+                <div class="services-card" style="background-color: #2D7864; color: #ffffff;">
+                  <div class="services-card__before"></div>
+                  <div class="services-card__content">
+                    <div class="services-card__sticker-camera">
+                      <img src="/stickers/camera.svg" alt="Camera sticker" style="width: 48px; height: auto;" />
+                    </div>
+                    <h3 class="services-card__h3" style="color: #ffffff;">Scout</h3>
+                    <ul role="list" class="services-card__list">
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Direct ATS scraping</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Ghost listing incinerator</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Salary transparency filter</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Direct hiring-team signals</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Daily curated briefings</p></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2: Lens -->
+              <div data-offset-rot="-2" data-offset-x="0" data-offset-y="-2.7" class="services-card__wrap is--2">
+                <div class="services-card" style="background-color: #82A0FF; color: #000000;">
+                  <div class="services-card__before"></div>
+                  <div class="services-card__content">
+                    <div class="services-card__sticker-camera">
+                      <img src="/stickers/cute.svg" alt="Cute sticker" style="width: 48px; height: auto;" />
+                    </div>
+                    <h3 class="services-card__h3" style="color: #000000;">Lens</h3>
+                    <ul role="list" class="services-card__list">
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Deep resume extraction</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">GitHub & case-study sync</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Verifiable match scores</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Targeted skill gap audits</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Salary unlock benchmarks</p></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3: Draft -->
+              <div data-offset-rot="1" data-offset-x="0" data-offset-y="0" class="services-card__wrap is--3">
+                <div class="services-card" style="background-color: #F5693C; color: #ffffff;">
+                  <div class="services-card__before"></div>
+                  <div class="services-card__content">
+                    <div class="services-card__sticker-camera">
+                      <img src="/stickers/lets-go.svg" alt="Lets go sticker" style="width: 48px; height: auto;" />
+                    </div>
+                    <h3 class="services-card__h3" style="color: #ffffff;">Draft</h3>
+                    <ul role="list" class="services-card__list">
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Human-toned cover notes</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Referral intro requests</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Case study pitch snippets</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Zero corporate buzzwords</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">One-click copy & send</p></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 4: Coach -->
+              <div data-offset-rot="-3" data-offset-x="0" data-offset-y="-3.5" class="services-card__wrap is--4">
+                <div class="services-card" style="background-color: #A0325A; color: #ffffff;">
+                  <div class="services-card__before"></div>
+                  <div class="services-card__content">
+                    <div class="services-card__sticker-camera">
+                      <img src="/stickers/fistbump.svg" alt="Fistbump sticker" style="width: 48px; height: auto;" />
+                    </div>
+                    <h3 class="services-card__h3" style="color: #ffffff;">Coach</h3>
+                    <ul role="list" class="services-card__list">
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Company-specific rubrics</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">STAR framework simulation</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Real-time craft critiques</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">CTC poker & salary defense</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Tough HR question sparring</p></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 5: Track -->
+              <div data-offset-rot="3" data-offset-x="0" data-offset-y="-5" class="services-card__wrap is--5">
+                <div class="services-card" style="background-color: #F0BEFA; color: #000000;">
+                  <div class="services-card__before"></div>
+                  <div class="services-card__content">
+                    <div class="services-card__sticker-camera">
+                      <img src="/stickers/100.svg" alt="100 sticker" style="width: 48px; height: auto;" />
+                    </div>
+                    <h3 class="services-card__h3" style="color: #000000;">Track</h3>
+                    <ul role="list" class="services-card__list">
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">5-phase visual pipeline</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Calendar sync & alarms</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Recruiter momentum radar</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">Offer comparison matrix</p></li>
+                      <li class="services-card__list-item"><p class="services-card__bullet-p">100% private offline data</p></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 8: Target Companies (.clients) -->
+        <section data-bg-section="light" data-theme-section="light" class="clients" style="padding: 6em 0;">
+          <div class="container is--large">
+            <div style="text-align: center; margin-bottom: 3em;">
+              <h4 style="font-family: 'Epilogue', sans-serif; font-weight: 900; font-size: 1.5em; text-transform: uppercase; letter-spacing: 0.05em;">
+                trusted by senior engineers & designers joining:
+              </h4>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3em; opacity: 0.85;">
+              <img src="/clients/686bc2c7844be9421f0335c7_netflix_logo.svg" alt="Netflix" style="height: 38px; filter: grayscale(100%);" />
+              <img src="/clients/686bc2d117d329bcecd8377b_hema_logo.svg" alt="HEMA" style="height: 38px; filter: grayscale(100%);" />
+              <img src="/clients/686bc2b720d4c815b09435c2_KFC_Logo.svg" alt="KFC" style="height: 38px; filter: grayscale(100%);" />
+              <img src="/clients/686bc2a8f4b310a3d6a5ce7d_anwb_logo.svg" alt="ANWB" style="height: 38px; filter: grayscale(100%);" />
+              <img src="/clients/686bc2c07339dde8931c0c50_oxxio_logo.svg" alt="Oxxio" style="height: 38px; filter: grayscale(100%);" />
+              <img src="/clients/686bc2d7cace3b14a9d8aa44_swapfiets_logo.svg" alt="Swapfiets" style="height: 38px; filter: grayscale(100%);" />
+              <img src="/clients/69afd1136c83261079802b27_bol_logo.svg" alt="Bol" style="height: 38px; filter: grayscale(100%);" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 9: Giant Footer with Big Script Logo & Launch CTA -->
+        <section class="footer" style="background-color: var(--color-dark, #000000); color: #ffffff; padding: 6em 0 4em 0; position: relative;">
+          <div class="container is--large" style="text-align: center;">
+            <div style="max-width: 800px; margin: 0 auto;">
+              <h2 class="display" style="font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.05;">
+                your career deserves <span style="font-family: 'Lora', serif; font-style: italic; color: var(--color-orange, #f5693c);">superpowers.</span>
+              </h2>
+              <p style="font-size: 1.25em; opacity: 0.8; margin-top: 1.5em; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Stop sending cold resumes into corporate black holes. Unleash 8 autonomous agents that scout, audit, and negotiate for you.
+              </p>
+              <div style="margin-top: 3em;">
+                <a
+                  href="/#dashboard"
+                  data-barba-prevent
+                  class="tag"
+                  data-theme="Orange"
+                  style="padding: 1.25em 3em; font-size: 1.25em; text-decoration: none; display: inline-flex;"
+                  onclick="navigateToOrbitApp('dashboard'); return false;"
+                >
+                  <h4 class="tag__h4" style="color: white; font-size: 1.2em;">LAUNCH CAREER OS NOW 🚀</h4>
+                </a>
+              </div>
+            </div>
+
+            <!-- Giant Orbit Script Logotype -->
+            <div style="margin-top: 6em; opacity: 0.15; font-family: 'Epilogue', sans-serif; font-weight: 900; font-size: clamp(4rem, 16vw, 15rem); letter-spacing: -0.05em; line-height: 0.8; user-select: none;">
+              orbit.
+            </div>
+
+            <div style="margin-top: 4em; padding-top: 2em; border-top: 1px solid rgba(255,255,255,0.15); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1em; font-size: 0.9em; opacity: 0.6;">
+              <div>© 2026 Orbit Career Intelligence. Private BYOA Architecture.</div>
+              <div>Designed with Dennis Snellenberg Animation Physics.</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Floating Standalone Pill Switcher -->
+    <a href="/#dashboard" data-barba-prevent class="orbit-top-pill" onclick="navigateToOrbitApp('dashboard'); return false;">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      <span>ENTER APP (REACT)</span>
+    </a>
+
+    <!-- Dennis Snellenberg GSAP & Webflow Runtime Scripts -->
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/barba.umd.min.js"></script>
+    <script src="/js/flickity.pkgd.min.js"></script>
+    <script src="/js/lenis.min.js"></script>
+    <script src="/js/gsap.min.js"></script>
+    <script src="/js/Draggable.min.js"></script>
+    <script src="/js/DrawSVGPlugin.min.js"></script>
+    <script src="/js/InertiaPlugin.min.js"></script>
+    <script src="/js/MorphSVGPlugin.min.js"></script>
+    <script src="/js/Observer.min.js"></script>
+    <script src="/js/ScrollTrigger.min.js"></script>
+    <script src="/js/SplitText.min.js"></script>
+    <script src="/js/player.js"></script>
+    <script src="/js/kjua.min.js"></script>
+    <script src="/js/CustomEase.min.js"></script>
+
+    <!-- Master Slater.app Animation Script -->
+    <script src="/js/40171.js" defer></script>
+
+    <script>
+      function navigateToOrbitApp(page) {
+        var p = page || 'dashboard';
+        try {
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'ORBIT_NAVIGATE', page: p }, '*');
+            window.parent.location.hash = '#' + p;
+            return;
+          }
+        } catch (err) {}
+        window.location.href = '/#' + p;
+      }
+    </script>
+  </body>
+</html>
