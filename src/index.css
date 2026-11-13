@@ -172,59 +172,59 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 /* ------------------------- Truus Big Cartoon Cursors ------------------------- */
-body,
-body * {
+html:not(.truus-on) body,
+html:not(.truus-on) body * {
   cursor: url("/cursors/cursor-default.svg") 3 2, auto;
 }
 
-body p,
-body p span,
-body h1,
-body h1 *,
-body h2,
-body h2 *,
-body h3,
-body h3 *,
-body h4,
-body h4 *,
-body h5,
-body h6,
-body input[type="text"],
-body input[type="email"],
-body input[type="search"],
-body textarea,
-body [data-text] {
+html:not(.truus-on) body p,
+html:not(.truus-on) body p span,
+html:not(.truus-on) body h1,
+html:not(.truus-on) body h1 *,
+html:not(.truus-on) body h2,
+html:not(.truus-on) body h2 *,
+html:not(.truus-on) body h3,
+html:not(.truus-on) body h3 *,
+html:not(.truus-on) body h4,
+html:not(.truus-on) body h4 *,
+html:not(.truus-on) body h5,
+html:not(.truus-on) body h6,
+html:not(.truus-on) body input[type="text"],
+html:not(.truus-on) body input[type="email"],
+html:not(.truus-on) body input[type="search"],
+html:not(.truus-on) body textarea,
+html:not(.truus-on) body [data-text] {
   cursor: url("/cursors/cursor-text.svg") 12 16, text;
 }
 
-body a,
-body a *,
-body a p,
-body button,
-body button *,
-body input[type="submit"],
-body input[type="submit"] *,
-body input[type="button"],
-body input[type="button"] *,
-body [data-hover],
-body [data-hover] *,
-body .cursor-pointer,
-body [role="button"] {
+html:not(.truus-on) body a,
+html:not(.truus-on) body a *,
+html:not(.truus-on) body a p,
+html:not(.truus-on) body button,
+html:not(.truus-on) body button *,
+html:not(.truus-on) body input[type="submit"],
+html:not(.truus-on) body input[type="submit"] *,
+html:not(.truus-on) body input[type="button"],
+html:not(.truus-on) body input[type="button"] *,
+html:not(.truus-on) body [data-hover],
+html:not(.truus-on) body [data-hover] *,
+html:not(.truus-on) body .cursor-pointer,
+html:not(.truus-on) body [role="button"] {
   cursor: url("/cursors/cursor-pointer.svg") 11 2, pointer !important;
 }
 
-body [data-cursor-drag],
-body .cursor-grab {
+html:not(.truus-on) body [data-cursor-drag],
+html:not(.truus-on) body .cursor-grab {
   cursor: url("/cursors/cursor-drag.svg") 12 0, grab !important;
 }
 
-body [data-cursor-drag]:active,
-body .cursor-grabbing {
+html:not(.truus-on) body [data-cursor-drag]:active,
+html:not(.truus-on) body .cursor-grabbing {
   cursor: url("/cursors/cursor-dragging.svg") 12 0, grabbing !important;
 }
 
 /* ------------------------- Truus Custom Cursor Follower ------------------------- */
-.custom-cursor {
+html:not(.truus-on) .custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
@@ -242,7 +242,7 @@ body .cursor-grabbing {
   opacity: 1;
 }
 
-.cursor-mute {
+html:not(.truus-on) .cursor-mute {
   transition: transform 0.4s cubic-bezier(0.625, 0.05, 0, 1);
   transform: scale(0) rotate(-60deg);
   width: 5.5rem;
@@ -256,16 +256,16 @@ body .cursor-grabbing {
   left: -2.75rem;
 }
 
-[data-cursor-init="true"][data-cursor-type="mute-true"] .cursor-mute,
-[data-cursor-init="true"][data-cursor-type="mute-false"] .cursor-mute {
+html:not(.truus-on) [data-cursor-init="true"][data-cursor-type="mute-true"] .cursor-mute,
+html:not(.truus-on) [data-cursor-init="true"][data-cursor-type="mute-false"] .cursor-mute {
   transition: transform 0.8s cubic-bezier(0.35, 1.75, 0.6, 1);
   transform: scale(1) rotate(0.001deg);
 }
 
-.cursor-drag,
-.cursor-click,
-.cursor-home,
-.cursor-text-tag {
+html:not(.truus-on) .cursor-drag,
+html:not(.truus-on) .cursor-click,
+html:not(.truus-on) .cursor-home,
+html:not(.truus-on) .cursor-text-tag {
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
@@ -274,16 +274,16 @@ body .cursor-grabbing {
   transform-origin: left bottom;
 }
 
-[data-cursor-init="true"][data-cursor-type="drag"] .cursor-drag,
-[data-cursor-init="true"][data-cursor-type="click"] .cursor-click,
-[data-cursor-init="true"][data-cursor-type="home"] .cursor-home,
-[data-cursor-init="true"][data-cursor-type="text"] .cursor-text-tag {
+html:not(.truus-on) [data-cursor-init="true"][data-cursor-type="drag"] .cursor-drag,
+html:not(.truus-on) [data-cursor-init="true"][data-cursor-type="click"] .cursor-click,
+html:not(.truus-on) [data-cursor-init="true"][data-cursor-type="home"] .cursor-home,
+html:not(.truus-on) [data-cursor-init="true"][data-cursor-type="text"] .cursor-text-tag {
   transition: transform 0.8s cubic-bezier(0.35, 1.75, 0.6, 1);
   transform: scale(1) rotate(0.001deg);
 }
 
 /* ------------------------- Signature Asymmetric Tag ------------------------- */
-.tag {
+html:not(.truus-on) .tag {
   background-color: var(--lavender);
   color: var(--black);
   border-top-left-radius: 10rem;
@@ -305,24 +305,24 @@ body .cursor-grabbing {
   white-space: nowrap;
 }
 
-.tag[data-theme="Pink"] {
+html:not(.truus-on) .tag[data-theme="Pink"] {
   background-color: var(--lavender);
 }
-.tag[data-theme="Orange"] {
+html:not(.truus-on) .tag[data-theme="Orange"] {
   background-color: var(--orange);
   color: white;
 }
-.tag[data-theme="Blue"] {
+html:not(.truus-on) .tag[data-theme="Blue"] {
   background-color: var(--blue);
   color: white;
 }
-.tag[data-theme="Lime"] {
+html:not(.truus-on) .tag[data-theme="Lime"] {
   background-color: var(--lime);
   color: var(--black);
 }
 
 /* ------------------------- Truus .future Section Layout ------------------------- */
-.future {
+html:not(.truus-on) .future {
   position: relative;
   padding-top: 5rem;
   padding-bottom: 6rem;
@@ -332,13 +332,13 @@ body .cursor-grabbing {
   user-select: none;
 }
 
-.future__row-title {
+html:not(.truus-on) .future__row-title {
   text-align: center;
   justify-content: center;
   display: flex;
 }
 
-.future__col-title {
+html:not(.truus-on) .future__col-title {
   flex-direction: column;
   align-items: center;
   max-width: 54rem;
@@ -347,7 +347,7 @@ body .cursor-grabbing {
   padding: 0 1.5rem;
 }
 
-.future__line {
+html:not(.truus-on) .future__line {
   position: relative;
   display: flex;
   justify-content: center;
@@ -356,12 +356,12 @@ body .cursor-grabbing {
   margin-top: 1.25rem;
 }
 
-.future__title-line {
+html:not(.truus-on) .future__title-line {
   width: 100%;
   color: var(--color-dark);
 }
 
-.future__love-sticker {
+html:not(.truus-on) .future__love-sticker {
   width: 8rem;
   position: absolute;
   bottom: -1rem;
@@ -371,14 +371,14 @@ body .cursor-grabbing {
 }
 
 @media (max-width: 768px) {
-  .future__love-sticker {
+  html:not(.truus-on) .future__love-sticker {
     width: 5rem;
     bottom: -0.5rem;
     right: 0rem;
   }
 }
 
-.future__row-cards {
+html:not(.truus-on) .future__row-cards {
   justify-content: center;
   align-items: center;
   padding-top: 7rem;
@@ -389,13 +389,13 @@ body .cursor-grabbing {
 }
 
 @media (max-width: 768px) {
-  .future__row-cards {
+  html:not(.truus-on) .future__row-cards {
     padding-top: 3.5rem;
     padding-bottom: 4rem;
   }
 }
 
-.future-image {
+html:not(.truus-on) .future-image {
   border-radius: 1.5rem;
   width: 16.5rem;
   aspect-ratio: 4/5;
@@ -408,21 +408,21 @@ body .cursor-grabbing {
 }
 
 @media (max-width: 768px) {
-  .future-image {
+  html:not(.truus-on) .future-image {
     width: 8.5rem;
     border-radius: 1rem;
     box-shadow: 4px 4px 0px var(--color-dark);
   }
 }
 
-.future-image img {
+html:not(.truus-on) .future-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.future__cards-item {
+html:not(.truus-on) .future__cards-item {
   margin-top: 2rem;
   margin-bottom: 2rem;
   position: relative;
@@ -430,43 +430,43 @@ body .cursor-grabbing {
   z-index: 4;
 }
 
-.future__cards-item.is--2 {
+html:not(.truus-on) .future__cards-item.is--2 {
   margin-left: -4rem;
   transform: translateY(1.75rem) rotate(3.5deg);
   z-index: 5;
 }
 
-.future__cards-item.is--3 {
+html:not(.truus-on) .future__cards-item.is--3 {
   user-select: none;
   margin-left: -2.5rem;
   transform: translateY(-1.75rem) rotate(-5deg);
   z-index: 6;
 }
 
-.future__cards-item.is--4 {
+html:not(.truus-on) .future__cards-item.is--4 {
   margin-left: -2.375rem;
   transform: translateY(0) rotate(3.5deg);
   z-index: 7;
 }
 
 @media (max-width: 768px) {
-  .future__cards-item {
+  html:not(.truus-on) .future__cards-item {
     transform: translateY(-0.75rem) rotate(-7.5deg);
   }
-  .future__cards-item.is--2 {
+  html:not(.truus-on) .future__cards-item.is--2 {
     margin-left: -2.25rem;
     transform: translateY(1rem) rotate(3.5deg);
   }
-  .future__cards-item.is--3 {
+  html:not(.truus-on) .future__cards-item.is--3 {
     margin-left: -1.5rem;
     transform: translateY(-0.5rem) rotate(-5deg);
   }
-  .future__cards-item.is--4 {
+  html:not(.truus-on) .future__cards-item.is--4 {
     display: none;
   }
 }
 
-.future__bg-shape {
+html:not(.truus-on) .future__bg-shape {
   width: 33rem;
   position: absolute;
   left: 50%;
@@ -477,13 +477,13 @@ body .cursor-grabbing {
 }
 
 @media (max-width: 768px) {
-  .future__bg-shape {
+  html:not(.truus-on) .future__bg-shape {
     width: 20rem;
     transform: translate(-50%, -50%) rotate(2deg);
   }
 }
 
-.future__flying-tag {
+html:not(.truus-on) .future__flying-tag {
   z-index: 15;
   position: absolute;
   top: 32%;
@@ -492,32 +492,32 @@ body .cursor-grabbing {
   pointer-events: none;
 }
 
-.future__flying-tag.is--2 {
+html:not(.truus-on) .future__flying-tag.is--2 {
   top: 72%;
   left: 50%;
 }
 
-.future__flying-tag.is--3 {
+html:not(.truus-on) .future__flying-tag.is--3 {
   top: 36%;
   left: 76%;
 }
 
 @media (max-width: 768px) {
-  .future__flying-tag {
+  html:not(.truus-on) .future__flying-tag {
     top: 24%;
     left: 28%;
   }
-  .future__flying-tag.is--2 {
+  html:not(.truus-on) .future__flying-tag.is--2 {
     top: 78%;
     left: 50%;
   }
-  .future__flying-tag.is--3 {
+  html:not(.truus-on) .future__flying-tag.is--3 {
     top: 30%;
     left: 78%;
   }
 }
 
-.future__row-text {
+html:not(.truus-on) .future__row-text {
   text-align: center;
   flex-direction: column;
   align-items: center;
@@ -526,7 +526,7 @@ body .cursor-grabbing {
   padding: 0 1.5rem;
 }
 
-.future__text-p {
+html:not(.truus-on) .future__text-p {
   max-width: 32rem;
   font-family: var(--font-body);
   font-size: 1.15rem;
@@ -824,7 +824,7 @@ footer h2 em {
   color: var(--lime);
   animation: spin 12s linear infinite;
 }
-.sticker {
+html:not(.truus-on) .sticker {
   position: absolute;
   z-index: 4;
   font: 700 18px/1 var(--display);

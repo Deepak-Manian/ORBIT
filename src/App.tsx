@@ -15,7 +15,7 @@ import { applicationService } from "./services/applicationService";
 import { profileService } from "./services/profileService";
 
 // Marketing
-import { LandingPage } from "./components/marketing/LandingPage";
+import { TruusLanding } from "./truus/TruusLanding";
 import { CustomCursor } from "./components/common/CustomCursor";
 import { SmoothScrollProvider } from "./components/common/SmoothScrollProvider";
 
@@ -214,13 +214,13 @@ export default function App() {
   // Current selected job object
   const currentJob = mockJobs.find((j) => j.id === selectedJobId) || mockJobs[0];
 
-  // Main render wrapped with SmoothScroll & CustomCursor
+  // The landing page owns its own smooth scroll, cursor and transitions (see src/truus).
+  if (currentPage === "landing") return <TruusLanding onEnterApp={() => navigate("dashboard")} />;
+
+  // App screens keep the shared smooth scroll + cursor.
   return (
     <SmoothScrollProvider>
       <CustomCursor />
-      {currentPage === "landing" ? (
-        <LandingPage onEnterApp={() => navigate("dashboard")} />
-      ) : (
         <AppLayout
           currentPage={currentPage}
           onNavigate={navigate}
@@ -285,7 +285,6 @@ export default function App() {
 
           {currentPage === "settings" && <GeneralSettingsPage onNavigate={navigate} />}
         </AppLayout>
-      )}
     </SmoothScrollProvider>
   );
 }
