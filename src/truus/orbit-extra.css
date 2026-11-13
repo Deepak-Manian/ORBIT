@@ -1,0 +1,50 @@
+/* ORBIT-specific additions to the ported reference CSS. Scoped like the rest (html.truus-on). */
+@keyframes orbit-spin { to { transform: rotate(360deg); } }
+
+html.truus-on .orbit-backdrop { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+html.truus-on .orbit-backdrop__ring { transform-box: view-box; transform-origin: 0 0; animation: orbit-spin 60s linear infinite; }
+@media (prefers-reduced-motion: reduce) { html.truus-on .orbit-backdrop__ring { animation: none; } }
+
+/* Agent tiles replace the reference's photography */
+html.truus-on .orbit-tile {
+  position: absolute; inset: 0; container-type: size; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4cqh;
+  color: var(--color-dark);
+}
+html.truus-on .orbit-tile[data-tone="lightgreen"] { background: var(--color-lightgreen); }
+html.truus-on .orbit-tile[data-tone="green"] { background: var(--color-green); color: var(--color-light); }
+html.truus-on .orbit-tile[data-tone="blue"] { background: var(--color-blue); }
+html.truus-on .orbit-tile[data-tone="maroonred"] { background: var(--color-maroonred); color: var(--color-light); }
+html.truus-on .orbit-tile[data-tone="orange"] { background: var(--color-orange); color: var(--color-light); }
+html.truus-on .orbit-tile[data-tone="pink"] { background: var(--color-pink); }
+html.truus-on .orbit-tile[data-tone="pastelpink"] { background: var(--color-pastelpink); }
+html.truus-on .orbit-tile[data-tone="darkgrey"] { background: var(--color-darkgrey); color: var(--color-lightgreen); }
+html.truus-on .orbit-tile__sticker { width: 46cqw; height: auto; max-height: 46cqh; object-fit: contain; transform: rotate(-6deg); }
+html.truus-on .orbit-tile__name {
+  font-family: Epilogue, Arial, sans-serif; font-weight: 900; text-transform: lowercase;
+  font-size: min(17cqw, 14cqh); letter-spacing: -0.04em; line-height: 1;
+}
+
+/* Marquee "logo" tiles become word tiles */
+html.truus-on .orbit-word {
+  position: absolute; inset: 0; container-type: size; display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 0 8%; box-sizing: border-box; color: var(--color-light);
+}
+html.truus-on .orbit-word span {
+  font-family: Epilogue, Arial, sans-serif; font-weight: 900; text-transform: lowercase;
+  font-size: min(18cqw, 30cqh); letter-spacing: -0.04em; line-height: 0.95;
+}
+
+/* label contrast per marquee tile colour (a/b/c/d cycle; the flipped row uses the alternate palette) */
+html.truus-on [data-logo-theme="a"] .orbit-word { color: var(--color-dark); }
+html.truus-on .double-marquee__single.is--flipped [data-logo-theme="a"] .orbit-word { color: var(--color-light); }
+html.truus-on .double-marquee__single.is--flipped [data-logo-theme="b"] .orbit-word,
+html.truus-on .double-marquee__single.is--flipped [data-logo-theme="c"] .orbit-word,
+html.truus-on .double-marquee__single.is--flipped [data-logo-theme="d"] .orbit-word { color: var(--color-dark); }
+
+/* flick deck: typographic card faces; the overhanging sticker is the accent */
+html.truus-on .flick-card .orbit-tile__sticker { display: none; }
+html.truus-on .flick-card .orbit-tile__name { font-size: 24cqw; transform: rotate(-4deg); }
+
+/* Tailwind's preflight makes every <svg> display:block; the reference leaves them inline. */
+html.truus-on svg { display: inline; }
