@@ -112,6 +112,11 @@ export function initTruusMotion(): TruusMotion {
   }
 
   // Animation - Page Loader
+  // Intro. "quick": a short fade-in, then the hero's own pop-in (no scribble wipe).
+  //        "none":  everything is visible immediately.
+  // (The scribble wipe still plays when entering the app — see pageTransitionIn.)
+  var INTRO = "quick";
+
   function initLoader() {
     var tl = gsap.timeline();
 
@@ -121,62 +126,11 @@ export function initTruusMotion(): TruusMotion {
     });
 
     tl.set($(".transition-container"), {
-      pointerEvents: "all",
+      pointerEvents: "none",
     });
 
-    tl.set($(".transition-scribble path"), {
-      strokeWidth: scribbleWidth,
-    });
-
-    tl.set(
-      ".transition-screen",
-      {
-        autoAlpha: 0.2,
-      },
-      "<",
-    );
-
-    tl.to(
-      $(".transition-scribble path"),
-      {
-        duration: 2,
-        drawSVG: "100% 100%",
-        ease: "Power2.easeInOut",
-      },
-      0.25,
-    );
-
-    tl.to(
-      ".transition-screen",
-      {
-        autoAlpha: 0,
-        duration: 2,
-        ease: "none",
-      },
-      "<",
-    );
-
-    tl.to(
-      $(".transition-scribble path"),
-      {
-        strokeWidth: scribbleWidthStart,
-        duration: 2,
-        ease: "cubic-default-scribble",
-      },
-      "<",
-    );
-
-    tl.set(
-      $(".transition-logo"),
-      {
-        autoAlpha: 0,
-      },
-      "< 0.95",
-    );
-
-    tl.set($(".transition-scribble path"), {
-      strokeWidth: "0%",
-      drawSVG: "0% 0%",
+    tl.set($(".transition-logo"), {
+      autoAlpha: 0,
     });
 
     tl.call(
@@ -187,12 +141,30 @@ export function initTruusMotion(): TruusMotion {
       0,
     );
 
+    if (INTRO === "none") {
+      tl.set(".transition-screen", { autoAlpha: 0 });
+      tl.call(
+        function () {
+          lenis.start();
+          gsap.set($(".transition-container"), { clearProps: "all" });
+          gsap.set($("main"), { clearProps: "all" });
+        },
+        null,
+        0,
+      );
+      return;
+    }
+
+    tl.set(".transition-screen", { autoAlpha: 1 });
+    tl.to(".transition-screen", { autoAlpha: 0, duration: 0.4, ease: "none" }, 0);
+
     tl.call(
       function () {
-        pageTransitionOut();
+        // skip the ~0.9s the original waited for the scribble wipe to finish
+        pageTransitionOut(0.78);
       },
       null,
-      0.5,
+      0,
     );
   }
 
@@ -280,7 +252,7 @@ export function initTruusMotion(): TruusMotion {
   }
 
   // Animation - Page Enter
-  function pageTransitionOut() {
+  function pageTransitionOut(skipTo) {
     var tl = gsap.timeline();
 
     if (document.querySelector("[data-split-words]")) {
@@ -422,6 +394,8 @@ export function initTruusMotion(): TruusMotion {
       null,
       0.3,
     );
+
+    if (skipTo) tl.seek(skipTo);
   }
 
 

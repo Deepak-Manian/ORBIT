@@ -1,6 +1,6 @@
 # `src/truus` — ORBIT landing page
 
-A port of the reference site's (truus.co) design system, motion and interactions, filled with ORBIT content.
+ORBIT's landing page: a scroll-driven design system with custom cursor, smooth scroll, and animated sections.
 
 | File | What it is |
 |---|---|
@@ -13,10 +13,14 @@ A port of the reference site's (truus.co) design system, motion and interactions
 | `OrbitBackdrop.tsx` | Hero panel background (the reference plays a video here). |
 | `LogoSvg.tsx` | ORBIT wordmark used by the nav, loader and footer. |
 
+## Intro animation
+`motion.ts` → `var INTRO = "quick"` (hero words pop in after a short fade). Set it to `"none"` to show everything immediately.
+The scribble wipe only plays when entering the app (`pageTransitionIn`).
+
 ## Key conventions
 - Behaviour is driven by `data-*` attributes, exactly like the reference: `data-custom-cursor="drag|click|home|mute"`, `data-wiggle`, `data-inertia-element`, `data-scroll-animation`, `data-theme-section` (nav colour), `data-anchor-target` (Lenis scroll links).
 - The landing owns its own Lenis + cursor; the app screens keep the shared `SmoothScrollProvider` / `CustomCursor` (see `App.tsx`).
 - Old landing rules left in `src/index.css` are scoped to `html:not(.truus-on)`, so they can't affect the landing.
 
 ## Assets to replace before a public launch
-The sticker artwork, cursor SVGs and several scribble shapes originate from the reference site. Swap them for your own: `public/stickers`, `public/cursors`, and the entries in `svgs.ts`. Placeholder values to update: footer email (`hello@orbit.app`) and LinkedIn link.
+The sticker artwork, cursor SVGs and several scribble shapes are third-party reference artwork, not ORBIT's own. Swap them for your own: `public/stickers`, `public/cursors`, and the entries in `svgs.ts`. Placeholder values to update: footer email (`hello@orbit.app`) and LinkedIn link.

@@ -147,14 +147,6 @@ export function Footer({ onEnter }: { onEnter: () => void }) {
           <div className="credits">
             <div className="credits__group">
               <div className="credits__tile">
-                <a data-wiggle="2" href="https://truus.co/" target="_blank" className="credits__tile-col w-inline-block">
-                  <h4 className="credits__h4">
-                    design inspired by
-                  </h4>
-                  <p data-wiggle-target="" className="credits__p">
-                    Truus
-                  </p>
-                </a>
                 <a data-wiggle="2" href="https://github.com/Deepak-Manian/ORBIT" target="_blank" className="credits__tile-col w-inline-block">
                   <h4 className="credits__h4">
                     built by
