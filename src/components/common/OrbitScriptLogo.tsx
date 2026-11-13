@@ -3,6 +3,7 @@ interface OrbitScriptLogoProps {
   color?: string;
   width?: string | number;
   height?: string | number;
+  viewBox?: string;
 }
 
 export function OrbitScriptLogo({
@@ -10,14 +11,15 @@ export function OrbitScriptLogo({
   color = "currentColor",
   width = "100%",
   height = "auto",
+  viewBox = "0 0 1100 280",
 }: OrbitScriptLogoProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1100 280"
+      viewBox={viewBox}
       fill="none"
       width={width}
-      height={height}
+      height={height === "auto" ? undefined : height}
       className={`select-none ${className}`}
       aria-label="orbit."
     >
