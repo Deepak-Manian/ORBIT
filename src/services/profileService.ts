@@ -29,9 +29,9 @@ export const profileService = {
               githubUsername: data.github_username || initialCareerProfile.githubUsername,
               skills: initialCareerProfile.skills,
               experience: initialCareerProfile.experience,
+              education: initialCareerProfile.education,
               projects: initialCareerProfile.projects,
-              preferredRoles: initialCareerProfile.preferredRoles,
-              targetCompensation: initialCareerProfile.targetCompensation,
+              preferences: initialCareerProfile.preferences,
             };
           }
         }

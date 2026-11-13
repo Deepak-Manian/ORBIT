@@ -133,8 +133,10 @@ export interface CareerProfileData {
   };
 }
 
+export type AIProviderId = "openai" | "gemini" | "groq" | "anthropic" | "openrouter" | "mistral" | "ollama" | "custom";
+
 export interface AIProvider {
-  id: string;
+  id: AIProviderId;
   name: string;
   badge: string;
   color: string;
